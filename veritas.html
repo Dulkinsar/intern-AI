@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intern AI Veritas - Transparent Certification System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Intern AI - Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-orange: #F47C2B;
@@ -12,13 +12,17 @@
             --light-grey: #F5F5F5;
             --dark-grey: #333333;
             --medium-grey: #666666;
-            --border-grey: #E0E0E0;
+            --accent-orange: #ff8c42;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -28,283 +32,604 @@
             background-color: var(--white);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-        }
-
-        .header-content {
+        .slide {
+            min-height: 100vh;
+            padding: 4rem 2rem;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-orange);
-            text-decoration: none;
-        }
-
-        .breadcrumb {
-            color: var(--medium-grey);
-            font-size: 0.9rem;
-        }
-
-        .breadcrumb a {
-            color: var(--primary-orange);
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 4rem 0;
-            min-height: 70vh;
-        }
-
-        .hero-section {
             text-align: center;
-            margin-bottom: 4rem;
+            position: relative;
         }
 
-        .module-icon {
+        .slide:nth-child(even) {
+            background: var(--light-grey);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 0.9rem;
+            color: var(--medium-grey);
+            font-weight: 500;
+        }
+
+        .slide h1 {
             font-size: 4rem;
-            margin-bottom: 1rem;
-            display: block;
+            font-weight: 800;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
 
-        .module-title {
+        .slide h2 {
             font-size: 3rem;
             font-weight: 700;
             color: var(--primary-orange);
-            margin-bottom: 1rem;
-        }
-
-        .module-badge {
-            display: inline-block;
-            background: var(--primary-orange);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
             margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            line-height: 1.2;
         }
 
-        .module-description {
+        .slide h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            margin-bottom: 1.5rem;
+        }
+
+        .subtitle {
             font-size: 1.5rem;
             color: var(--medium-grey);
+            margin-bottom: 2rem;
             max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1rem;
+            color: var(--medium-grey);
+            margin-top: 3rem;
+        }
+
+        .problem-list, .solution-list {
+            text-align: left;
+            max-width: 700px;
             margin: 0 auto;
-            font-style: italic;
-            line-height: 1.7;
         }
 
-        .content-section {
-            background: var(--light-grey);
-            padding: 3rem 0;
-            margin: 3rem 0;
+        .problem-list li, .solution-list li {
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
         }
 
-        .content-grid {
+        .problem-list li::before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .solution-list li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            max-width: 1000px;
+        }
+
+        .tech-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-orange);
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .tech-item h4 {
+            font-size: 1.4rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .tech-item p {
+            font-size: 1.1rem;
+            color: var(--medium-grey);
+            line-height: 1.6;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange));
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem auto;
+            max-width: 800px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin: 2rem 0;
         }
 
-        .content-card {
+        .feature-card {
             background: var(--white);
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border-left: 4px solid var(--primary-orange);
+            border: 2px solid var(--light-grey);
+            transition: all 0.3s ease;
         }
 
-        .content-card h3 {
+        .feature-card:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h4 {
+            color: var(--primary-orange);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .module-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-orange);
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .module-card h4 {
+            color: var(--primary-orange);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .roadmap-timeline {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .roadmap-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-orange);
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .roadmap-period {
+            font-weight: 700;
+            color: var(--primary-orange);
+            min-width: 120px;
+            margin-right: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .roadmap-content {
+            flex: 1;
+        }
+
+        .business-model {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            max-width: 900px;
+        }
+
+        .model-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--primary-orange);
+            text-align: center;
+        }
+
+        .model-card h4 {
             color: var(--primary-orange);
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
 
-        .content-card p {
-            color: var(--medium-grey);
-            line-height: 1.6;
-        }
-
-        .back-button {
-            display: inline-block;
-            background: var(--primary-orange);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-top: 2rem;
-        }
-
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(244, 124, 43, 0.3);
-        }
-
-        .back-section {
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-grey);
-            color: var(--white);
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
             color: var(--primary-orange);
+            margin: 1rem 0;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--medium-grey);
+            margin-top: 0.5rem;
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .module-title {
+            .slide {
+                padding: 2rem 1rem;
+            }
+
+            .slide h1 {
                 font-size: 2.5rem;
             }
 
-            .module-description {
+            .slide h2 {
+                font-size: 2rem;
+            }
+
+            .slide h3 {
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
                 font-size: 1.2rem;
             }
 
-            .content-grid {
+            .tech-grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer-content {
+            .tech-item {
+                padding: 1.5rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roadmap-item {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .roadmap-period {
+                min-width: auto;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .business-model {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .module-title {
+            .slide h1 {
                 font-size: 2rem;
             }
 
-            .module-description {
+            .slide h2 {
+                font-size: 1.8rem;
+            }
+
+            .problem-list li, .solution-list li {
                 font-size: 1.1rem;
             }
 
-            .content-card {
-                padding: 1.5rem;
+            .tech-item, .module-card, .roadmap-item {
+                padding: 1.2rem;
+            }
+
+            .metric-number {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
+    <!-- Slide 1: Title -->
+    <section class="slide">
+        <div class="slide-number">01/10</div>
         <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">Intern AI</a>
-                <div class="breadcrumb">
-                    <a href="index.html">Home</a> > AI Veritas
+            <h1>Intern AI</h1>
+            <p class="subtitle">Kazakhstan's first AI-driven platform for internships and social growth among high school students</p>
+            <p class="date">January 2025</p>
+        </div>
+    </section>
+
+    <!-- Slide 2: The Problem -->
+    <section class="slide">
+        <div class="slide-number">02/10</div>
+        <div class="container">
+            <h2>The Problem</h2>
+            <ul class="problem-list">
+                <li>Students don't know how to get real internships</li>
+                <li>Companies don't trust school-age resumes</li>
+                <li>No reliable portfolio or feedback system</li>
+                <li>Students with disabilities excluded from opportunity</li>
+                <li>Career progress with no social growth leads to shallow outcomes</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3: The Solution -->
+    <section class="slide">
+        <div class="slide-number">03/10</div>
+        <div class="container">
+            <h2>The Solution</h2>
+            <p class="subtitle">Intern AI is not just a platform — it's a full-stack learning & matching system with AI at its core:</p>
+            <ul class="solution-list">
+                <li>Adaptive track recommendations</li>
+                <li>Behavioral scoring & internship readiness prediction</li>
+                <li>Portfolio quality evaluation</li>
+                <li>Mentor-student matchmaking</li>
+                <li>Verifiable AI-backed certification</li>
+                <li>Social mission integration</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 4: Deep Tech Stack -->
+    <section class="slide">
+        <div class="slide-number">04/10</div>
+        <div class="container">
+            <h2>Deep Tech Stack</h2>
+            <p class="subtitle">Intern AI is built on a real AI feedback + behavior loop:</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>🧠 AI Matchmaking Engine</h4>
+                    <p>Smart mentor & peer pairing using performance, interests, and behavioral data</p>
+                </div>
+                <div class="tech-item">
+                    <h4>📈 Readiness Prediction</h4>
+                    <p>Behavioral signals analyzed to forecast internship success probability</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🧾 Portfolio Scoring</h4>
+                    <p>Algorithmic scoring of projects + clarity of work</p>
+                </div>
+                <div class="tech-item">
+                    <h4>🔁 Feedback Loops</h4>
+                    <p>AI-generated feedback, verified by mentors, improves user performance iteratively</p>
+                </div>
+                <div class="tech-item">
+                    <h4>✅ Explainable Certification</h4>
+                    <p>AI grades + gives reasoned feedback, not black-box results</p>
+                </div>
+            </div>
+
+            <div class="warning">
+                ⚠️ This is <strong>not</strong> a "layer of AI" — it's a full behavior-aware evaluation system.
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Product Overview -->
+    <section class="slide">
+        <div class="slide-number">05/10</div>
+        <div class="container">
+            <h2>Product Overview</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🛤️ Career Tracks</h4>
+                    <p>Web, Data, Business, UX - structured learning paths</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🏆 Smart Certification</h4>
+                    <p>A+, A, B, C grades with full rubric transparency</p>
+                </div>
+                <div class="feature-card">
+                    <h4>👥 Mentorship Network</h4>
+                    <p>Mentor and peer-based support system</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🌍 Inclusive Internships</h4>
+                    <p>CAS-style social engagement opportunities</p>
+                </div>
+                <div class="feature-card">
+                    <h4>✅ Public Verification</h4>
+                    <p>Blockchain-backed certificate verification</p>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
+    <!-- Slide 6: Intern AI Modules -->
+    <section class="slide">
+        <div class="slide-number">06/10</div>
         <div class="container">
-            <div class="hero-section">
-                <span class="module-icon">✅</span>
-                <div class="module-badge">AI Verification</div>
-                <h1 class="module-title">Intern AI Veritas</h1>
-                <p class="module-description">
-                    Every grade and certificate comes with an explanation. Students know what they earned and why. Recruiters trust our evaluations.
-                </p>
+            <h2>Intern AI Modules</h2>
+            <p class="subtitle">Branded AI-powered tools that form our competitive moat</p>
+            
+            <div class="modules-grid">
+                <div class="module-card">
+                    <h4>📊 Intern AI Analytics</h4>
+                    <p>Predicts track fit & readiness using behavioral analysis</p>
+                </div>
+                <div class="module-card">
+                    <h4>✅ Intern AI Veritas</h4>
+                    <p>Transparent, explainable certificates with full reasoning</p>
+                </div>
+                <div class="module-card">
+                    <h4>🛡️ CredibilityGuard</h4>
+                    <p>Filters hallucinated AI feedback for quality assurance</p>
+                </div>
+                <div class="module-card">
+                    <h4>🤝 Intern AI Connect</h4>
+                    <p>Smart matching with mentors and team members</p>
+                </div>
+                <div class="module-card">
+                    <h4>📈 AdminLens</h4>
+                    <p>BI dashboard for schools and partners</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="content-section">
-                <div class="container">
-                    <div class="content-grid">
-                        <div class="content-card">
-                            <h3>📋 Transparent Grading</h3>
-                            <p>Every assessment result includes detailed explanations of what was evaluated, how points were earned, and specific areas for improvement.</p>
-                        </div>
-                        <div class="content-card">
-                            <h3>🎓 Verified Certificates</h3>
-                            <p>All certificates include blockchain-verified authenticity and detailed competency breakdowns that recruiters can trust and verify independently.</p>
-                        </div>
-                        <div class="content-card">
-                            <h3>📊 Skill Breakdown</h3>
-                            <p>Students receive comprehensive reports showing exactly which skills were demonstrated and at what proficiency level for complete transparency.</p>
-                        </div>
-                        <div class="content-card">
-                            <h3>🔍 Recruiter Confidence</h3>
-                            <p>Employers can access detailed verification reports and skill assessments, eliminating guesswork in the hiring process.</p>
-                        </div>
+    <!-- Slide 7: Roadmap -->
+    <section class="slide">
+        <div class="slide-number">07/10</div>
+        <div class="container">
+            <h2>Roadmap</h2>
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    <div class="roadmap-period">0–3 mo</div>
+                    <div class="roadmap-content">
+                        <p>MVP live, 1 track, 10 students</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-period">4–6 mo</div>
+                    <div class="roadmap-content">
+                        <p>AI cert logic + 50+ students</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-period">6–12 mo</div>
+                    <div class="roadmap-content">
+                        <p>Social modules, verified certs, 3+ B2B partners</p>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-period">12+ mo</div>
+                    <div class="roadmap-content">
+                        <p>Scale across CIS region</p>
                     </div>
                 </div>
             </div>
-
-            <div class="back-section">
-                <a href="index.html" class="back-button">← Back to Home</a>
-            </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Slide 8: Business Model -->
+    <section class="slide">
+        <div class="slide-number">08/10</div>
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Intern AI | Built with love in Almaty</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Telegram">📱</a>
-                    <a href="#" aria-label="Instagram">📷</a>
+            <h2>Business Model</h2>
+            <div class="business-model">
+                <div class="model-card">
+                    <h4>Freemium</h4>
+                    <p>Basic track access and community features</p>
+                </div>
+                <div class="model-card">
+                    <h4>Subscription</h4>
+                    <div class="price">₸9,900/mo</div>
+                    <p>Full tracks, mentorship, certification</p>
+                </div>
+                <div class="model-card">
+                    <h4>Verified Certificates</h4>
+                    <p>Premium certification with blockchain verification</p>
+                </div>
+                <div class="model-card">
+                    <h4>B2B Partnerships</h4>
+                    <p>Companies pay for talent pipeline access</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- Slide 9: GTM Strategy -->
+    <section class="slide">
+        <div class="slide-number">09/10</div>
+        <div class="container">
+            <h2>Go-to-Market Strategy</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🏫 Educational Partnerships</h4>
+                    <p>School clubs, regional programs, NIS, NU partnerships</p>
+                </div>
+                <div class="feature-card">
+                    <h4>💬 Digital Communities</h4>
+                    <p>Telegram, Discord community building</p>
+                </div>
+                <div class="feature-card">
+                    <h4>👨‍🎓 Student Ambassadors</h4>
+                    <p>Peer-to-peer growth through ambassador program</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🤝 NGO Partnerships</h4>
+                    <p>Social organizations for inclusivity track</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Vision -->
+    <section class="slide">
+        <div class="slide-number">10/10</div>
+        <div class="container">
+            <h2>Vision</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <span class="metric-number">10,000+</span>
+                    <span class="metric-label">Students Certified by 2027</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-number">#1</span>
+                    <span class="metric-label">Central Asia's Student-to-Internship Engine</span>
+                </div>
+            </div>
+            <ul class="solution-list">
+                <li>Become Central Asia's trusted student-to-internship engine</li>
+                <li>Build reputation scoring layer for teen talent</li>
+                <li>Move from platform → infrastructure</li>
+                <li>Create the standard for student capability verification</li>
+            </ul>
+        </div>
+    </section>
 </body>
 </html> 
