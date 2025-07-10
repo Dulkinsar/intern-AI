@@ -204,9 +204,101 @@
             line-height: 1.6;
         }
 
+        /* AI Modules Section */
+        .ai-modules {
+            background: var(--white);
+        }
+
+        .ai-modules-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, #ff8c42 100%);
+            border-radius: 15px;
+            color: var(--white);
+        }
+
+        .ai-modules-intro h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .ai-modules-intro p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .ai-modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .ai-module-card {
+            background: var(--light-grey);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), #ff8c42);
+        }
+
+        .ai-module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(244, 124, 43, 0.2);
+            border-color: var(--primary-orange);
+        }
+
+        .ai-module-card h3 {
+            color: var(--primary-orange);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-module-icon {
+            font-size: 1.8rem;
+        }
+
+        .ai-module-card p {
+            color: var(--medium-grey);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            font-style: italic;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: var(--primary-orange);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         /* Roadmap Section */
         .roadmap {
-            background: var(--white);
+            background: var(--light-grey);
         }
 
         .roadmap-timeline {
@@ -304,6 +396,18 @@
                 grid-template-columns: 1fr;
             }
 
+            .ai-modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-modules-intro {
+                padding: 1.5rem;
+            }
+
+            .ai-module-card {
+                padding: 2rem;
+            }
+
             .roadmap-item {
                 flex-direction: column;
             }
@@ -340,6 +444,18 @@
             .feature-card {
                 padding: 1.5rem;
             }
+
+            .ai-modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-modules-intro {
+                padding: 1.5rem;
+            }
+
+            .ai-module-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -352,6 +468,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#features">Features</a></li>
+                <li><a href="#ai-modules">AI Modules</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
             </ul>
         </nav>
@@ -417,6 +534,65 @@
                     <div class="feature-icon">🤖</div>
                     <h3>AI-Powered Matching</h3>
                     <p>Our internship catalog uses AI to match students with opportunities that fit their skills and interests perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Modules Section -->
+    <section id="ai-modules" class="section ai-modules">
+        <div class="container">
+            <h2 class="section-title">⚙️ Intern AI Modules — Built to Understand Every Student</h2>
+            
+            <div class="ai-modules-intro">
+                <h3>Powered by Proprietary AI Technology</h3>
+                <p>Our intelligent systems work behind the scenes to create personalized learning experiences, verify achievements, and connect students with the perfect opportunities.</p>
+            </div>
+
+            <div class="ai-modules-grid">
+                <div class="ai-module-card">
+                    <div class="ai-badge">AI Analytics</div>
+                    <h3>
+                        <span class="ai-module-icon">📊</span>
+                        Intern AI Analytics
+                    </h3>
+                    <p>Our system tracks student activity, recommends the most suitable career track, and predicts internship readiness — all powered by AI.</p>
+                </div>
+
+                <div class="ai-module-card">
+                    <div class="ai-badge">AI Verification</div>
+                    <h3>
+                        <span class="ai-module-icon">✅</span>
+                        Intern AI Veritas
+                    </h3>
+                    <p>Every grade and certificate comes with an explanation. Students know what they earned and why. Recruiters trust our evaluations.</p>
+                </div>
+
+                <div class="ai-module-card">
+                    <div class="ai-badge">Quality Control</div>
+                    <h3>
+                        <span class="ai-module-icon">🛡️</span>
+                        CredibilityGuard
+                    </h3>
+                    <p>All AI-generated feedback is filtered and verified — no hallucinated facts, no errors. Just credible, review-ready insights.</p>
+                </div>
+
+                <div class="ai-module-card">
+                    <div class="ai-badge">AI Matching</div>
+                    <h3>
+                        <span class="ai-module-icon">🤝</span>
+                        Intern AI Connect
+                    </h3>
+                    <p>AI matches each student with the right mentor or teammate for maximum productivity, based on compatibility and learning style.</p>
+                </div>
+
+                <div class="ai-module-card">
+                    <div class="ai-badge">Admin Dashboard</div>
+                    <h3>
+                        <span class="ai-module-icon">📈</span>
+                        AdminLens
+                    </h3>
+                    <p>A full analytics dashboard for schools and partners: track student progress, engagement, and internship potential — instantly.</p>
                 </div>
             </div>
         </div>
