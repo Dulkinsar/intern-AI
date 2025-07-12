@@ -3,747 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intern AI - Pitch Deck</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>n! Bet - SAT Mock Betting Odds</title>
     <style>
-        :root {
-            --primary-orange: #F47C2B;
-            --white: #FFFFFF;
-            --light-grey: #F5F5F5;
-            --dark-grey: #333333;
-            --medium-grey: #666666;
-            --accent-orange: #ff8c42;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-grey);
-            background-color: var(--white);
-        }
-
-        .slide {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
             min-height: 100vh;
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .slide:nth-child(even) {
-            background: var(--light-grey);
-        }
-
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .slide-number {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 0.9rem;
-            color: var(--medium-grey);
-            font-weight: 500;
-        }
-
-        .slide h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--primary-orange);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .slide h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-orange);
-            margin-bottom: 2rem;
-            line-height: 1.2;
-        }
-
-        .slide h3 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--dark-grey);
-            margin-bottom: 1.5rem;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--medium-grey);
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.4;
-        }
-
-        .date {
-            font-size: 1.1rem;
-            color: var(--medium-grey);
-            margin-top: 3rem;
-        }
-
-        .problem-list, .solution-list {
-            text-align: left;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .problem-list li, .solution-list li {
-            font-size: 1.3rem;
-            color: var(--dark-grey);
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-            position: relative;
-        }
-
-        .problem-list li::before {
-            content: "❌";
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .solution-list li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-            max-width: 1000px;
-        }
-
-        .tech-item {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 5px solid var(--primary-orange);
-            text-align: left;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .tech-item h4 {
-            font-size: 1.4rem;
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .tech-item p {
-            font-size: 1.1rem;
-            color: var(--medium-grey);
             line-height: 1.6;
         }
-
-        .warning {
-            background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange));
-            color: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin: 2rem auto;
-            max-width: 800px;
-            font-size: 1.2rem;
-            font-weight: 600;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
-
-        .features-grid {
+        
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #00ff88;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ff88, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #cccccc;
+            font-weight: 300;
+        }
+        
+        .live-indicator {
+            display: inline-block;
+            background: #ff0040;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .betting-section {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #00ff88;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .odds-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: 15px;
+            margin-bottom: 40px;
         }
-
-        .feature-card {
-            background: var(--white);
-            padding: 2rem;
+        
+        .odds-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            border: 2px solid var(--light-grey);
+            padding: 20px;
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-
-        .feature-card:hover {
-            border-color: var(--primary-orange);
+        
+        .odds-card:hover {
             transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
-
-        .feature-card h4 {
-            color: var(--primary-orange);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+        
+        .odds-card.favorite {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+            border-color: #00ff88;
         }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+        
+        .odds-card.favorite::before {
+            content: "★ FAVORITE";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #00ff88;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
         }
-
-        .module-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--primary-orange);
-            text-align: left;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .module-card h4 {
-            color: var(--primary-orange);
+        
+        .contestant-name {
             font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .roadmap-timeline {
-            max-width: 800px;
-            margin: 2rem auto;
-        }
-
-        .roadmap-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 15px;
-            border-left: 5px solid var(--primary-orange);
-            text-align: left;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .roadmap-period {
             font-weight: 700;
-            color: var(--primary-orange);
-            min-width: 120px;
-            margin-right: 2rem;
-            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #ffffff;
         }
-
-        .roadmap-content {
-            flex: 1;
+        
+        .odds-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .business-model {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-            max-width: 900px;
-        }
-
-        .model-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 2px solid var(--primary-orange);
-            text-align: center;
-        }
-
-        .model-card h4 {
-            color: var(--primary-orange);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .price {
+        
+        .odds-multiplier {
             font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-orange);
-            margin: 1rem 0;
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
         }
-
-        .metrics {
+        
+        .bet-button {
+            background: linear-gradient(45deg, #00ff88, #00d4ff);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .bet-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+        }
+        
+        .rank-indicator {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            background: #ff0040;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-around;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
-
-        .metric {
+        
+        .longshot {
+            border-color: #ff6b00;
+        }
+        
+        .longshot .odds-multiplier {
+            color: #ff6b00;
+            text-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+        }
+        
+        .disclaimer {
             text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .metric-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-orange);
-            display: block;
+        
+        .disclaimer p {
+            font-style: italic;
+            color: #888;
+            font-size: 0.9rem;
         }
-
-        .metric-label {
+        
+        .countdown {
+            text-align: center;
+            margin: 30px 0;
             font-size: 1.1rem;
-            color: var(--medium-grey);
-            margin-top: 0.5rem;
+            color: #00d4ff;
         }
-
-        /* Mobile Responsive */
+        
+        .countdown strong {
+            color: #00ff88;
+            font-size: 1.3rem;
+        }
+        
         @media (max-width: 768px) {
-            .slide {
-                padding: 2rem 1rem;
-            }
-
-            .slide h1 {
-                font-size: 2.5rem;
-            }
-
-            .slide h2 {
-                font-size: 2rem;
-            }
-
-            .slide h3 {
-                font-size: 1.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .tech-grid {
+            .odds-grid {
                 grid-template-columns: 1fr;
             }
-
-            .tech-item {
-                padding: 1.5rem;
-            }
-
-            .modules-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .roadmap-item {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .roadmap-period {
-                min-width: auto;
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
-
-            .business-model {
-                grid-template-columns: 1fr;
-            }
-
-            .metrics {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slide h1 {
+            
+            .logo {
                 font-size: 2rem;
             }
-
-            .slide h2 {
-                font-size: 1.8rem;
-            }
-
-            .problem-list li, .solution-list li {
-                font-size: 1.1rem;
-            }
-
-            .tech-item, .module-card, .roadmap-item {
-                padding: 1.2rem;
-            }
-
-            .metric-number {
-                font-size: 2rem;
+            
+            .container {
+                padding: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Slide 1: Title -->
-    <section class="slide">
-        <div class="slide-number">01/10</div>
-        <div class="container">
-            <h1>Intern AI</h1>
-            <p class="subtitle"> First AI-driven platform for internships and social growth among high school students</p>
-            <p class="date">July 2025</p>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">n! Bet</h1>
+            <p class="tagline">Place Your Wagers on Academic Glory!</p>
+            <div class="live-indicator">🔴 LIVE</div>
+        </header>
+        
+        <div class="countdown">
+            <strong>⏰ Mock Exam Results:</strong> Coming Soon!
         </div>
-    </section>
-
-    <!-- Slide 2: The Problem -->
-    <section class="slide">
-        <div class="slide-number">02/10</div>
-        <div class="container">
-            <h2>The Problem</h2>
-            <ul class="problem-list">
-                <li>Students don't know how to get real internships</li>
-                <li>Companies don't trust school-age resumes</li>
-                <li>No reliable portfolio or feedback system</li>
-                <li>Students with disabilities excluded from opportunity</li>
-                <li>Career progress with no social growth leads to shallow outcomes</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Slide 3: AI at the Core -->
-    <section class="slide">
-        <div class="slide-number">03/10</div>
-        <div class="container">
-            <h2>Intern AI: AI at the Core, Not the Edge</h2>
-            <p class="subtitle">Intern AI is a full-stack AI system for career preparation.<br>
-            It doesn't just recommend — it understands, predicts, and adapts.</p>
-            <ul class="solution-list">
-                <li>We analyze behavior, score performance, match humans, and generate explainable outcomes</li>
-                <li>Every interaction feeds our learning algorithms</li>
-                <li>Students get AI-powered personal roadmaps that evolve in real-time</li>
-                <li>Mentors receive AI-generated insights about student progress</li>
-                <li>Companies get behavioral readiness scores, not just certificates</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Slide 4: Deep Tech Architecture -->
-    <section class="slide">
-        <div class="slide-number">04/11</div>
-        <div class="container">
-            <h2>Intern AI — Deep Tech Architecture</h2>
-            <p class="subtitle">Four core AI systems working in harmony to create personalized learning experiences</p>
+        
+        <section class="betting-section">
+            <h2 class="section-title">🎯 SAT Mock Exam - Winner Takes All</h2>
             
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <h4>🧠 AI Matchmaking Engine</h4>
-                    <p>Smart matching of mentors, teams, and peer groups based on learning profiles, goals, and behavior patterns. Creates optimal learning environments for each student.</p>
-                </div>
-                <div class="tech-item">
-                    <h4>📊 Behavioral Readiness Scoring</h4>
-                    <p>Tracks speed, dropout risk, engagement, and mastery in real-time. Flags internship-ready students and identifies where support is needed.</p>
-                </div>
-                <div class="tech-item">
-                    <h4>🎯 Adaptive Learning Flow</h4>
-                    <p>Every lesson is unlocked, accelerated, or paused based on real-time signals. Students get personal, evolving roadmaps — not static modules.</p>
-                </div>
-                <div class="tech-item">
-                    <h4>📝 Portfolio Scoring + Feedback Engine</h4>
-                    <p>Project submissions scored for quality, completion, and clarity. AI writes draft feedback — experts verify. Each certificate includes reasoned evaluation, not just a grade.</p>
-                </div>
-            </div>
-
-            <div class="warning">
-                🚀 This is <strong>not</strong> a "layer of AI" — it's a full behavior-aware evaluation system that learns and adapts.
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 5: Regional Edge -->
-    <section class="slide">
-        <div class="slide-number">05/11</div>
-        <div class="container">
-            <h2> Launched in Hong Kong, Scaling Across Asia</h2>
-            <p class="subtitle">Intern AI was born in one of Asia's most connected education hubs — Hong Kong.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h4>🏙️ Hong Kong HQ</h4>
-                    <p>Strategic location at the crossroads of East and West, with access to global talent and investment</p>
-                </div>
-                <div class="feature-card">
-                    <h4>🌏 Asian Expansion</h4>
-                    <p>Scaling toward Central Asia, Southeast Asia, and globally with region-specific adaptations</p>
-                </div>
-                <div class="feature-card">
-                    <h4>📱 Digital-Native Gen Z</h4>
-                    <p>The region's digitally fluent students are ready — Intern AI makes them internship-ready</p>
-                </div>
-                <div class="feature-card">
-                    <h4>🎓 Education Hub</h4>
-                    <p>Access to world-class universities and international education standards</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 6: Product Overview -->
-    <section class="slide">
-        <div class="slide-number">06/11</div>
-        <div class="container">
-            <h2>Product Overview</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h4>🛤️ Career Tracks</h4>
-                    <p>Web, Data, Business, UX - structured learning paths</p>
-                </div>
-                <div class="feature-card">
-                    <h4>🏆 Smart Certification</h4>
-                    <p>A+, A, B, C grades with full rubric transparency</p>
-                </div>
-                <div class="feature-card">
-                    <h4>👥 Mentorship Network</h4>
-                    <p>Mentor and peer-based support system</p>
-                </div>
-                <div class="feature-card">
-                    <h4>🌍 Inclusive Internships</h4>
-                    <p>CAS-style social engagement opportunities</p>
-                </div>
-                <div class="feature-card">
-                    <h4>✅ Public Verification</h4>
-                    <p>Blockchain-backed certificate verification</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 7: Intern AI Modules -->
-    <section class="slide">
-        <div class="slide-number">07/11</div>
-        <div class="container">
-            <h2>Intern AI Modules</h2>
-            <p class="subtitle">Branded AI-powered tools that form our competitive moat</p>
-            
-            <div class="modules-grid">
-                <div class="module-card">
-                    <h4>📊 Intern AI Analytics</h4>
-                    <p>Behavioral signal tracking + internship readiness predictions. Analyzes learning patterns, engagement rates, and skill mastery to forecast success probability.</p>
-                </div>
-                <div class="module-card">
-                    <h4>✅ Intern AI Veritas</h4>
-                    <p>Transparent certification with auto-generated rationale. Every grade comes with detailed reasoning, skill breakdown, and improvement recommendations.</p>
-                </div>
-                <div class="module-card">
-                    <h4>🛡️ CredibilityGuard</h4>
-                    <p>Ensures zero hallucinated feedback or misjudged output. Cross-validates AI assessments against human expert review to maintain accuracy.</p>
-                </div>
-                <div class="module-card">
-                    <h4>🤝 Intern AI Connect</h4>
-                    <p>Matchmaking across peer and mentor network using internal scoring. Creates optimal learning partnerships based on complementary skills and goals.</p>
-                </div>
-                <div class="module-card">
-                    <h4>📈 AdminLens</h4>
-                    <p>Live dashboards for school partners: who's growing, who's falling behind. Real-time insights into student progress and intervention opportunities.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 8: Intern AI Analytics -->
-    <section class="slide">
-        <div class="slide-number">08/16</div>
-        <div class="container">
-            <h2>Intern AI Analytics</h2>
-            <p class="subtitle">Predictive engine for student readiness</p>
-            
-            <div class="tech-item" style="max-width: 800px; margin: 2rem auto;">
-                <p style="font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
-                    This system analyzes behavioral signals — lesson pacing, project submission times, dropout risk — and uses AI to predict how close a student is to being internship-ready.
-                </p>
-                <div style="background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange)); color: var(--white); padding: 1.5rem; border-radius: 12px; font-size: 1.2rem; font-weight: 600;">
-                    🧠 It's not just tracking clicks — it <strong>learns patterns</strong>, classifies learners, and adapts suggestions accordingly.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 9: Intern AI Veritas -->
-    <section class="slide">
-        <div class="slide-number">09/16</div>
-        <div class="container">
-            <h2>Intern AI Veritas</h2>
-            <p class="subtitle">Explainable certification, not just grading</p>
-            
-            <div class="tech-item" style="max-width: 800px; margin: 2rem auto;">
-                <p style="font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
-                    Every certification comes with a transparent, AI-generated explanation. It evaluates lesson completion, project quality, and mentorship feedback to justify a student's final grade.
-                </p>
-                <div style="background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange)); color: var(--white); padding: 1.5rem; border-radius: 12px; font-size: 1.2rem; font-weight: 600;">
-                    🧠 The AI generates <strong>natural-language explanations</strong> based on scoring rubrics and behavior — not just numbers.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 10: CredibilityGuard -->
-    <section class="slide">
-        <div class="slide-number">10/16</div>
-        <div class="container">
-            <h2>CredibilityGuard</h2>
-            <p class="subtitle">Trustworthy, verified AI outputs</p>
-            
-            <div class="tech-item" style="max-width: 800px; margin: 2rem auto;">
-                <p style="font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
-                    All AI-generated feedback passes through multi-layer filters to eliminate hallucinations, vague advice, or false positives.
-                </p>
-                <div style="background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange)); color: var(--white); padding: 1.5rem; border-radius: 12px; font-size: 1.2rem; font-weight: 600;">
-                    🧠 Uses <strong>classification models + keyword logic</strong> to ensure quality and consistency. Nothing is published without AI-backed credibility.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 11: Intern AI Connect -->
-    <section class="slide">
-        <div class="slide-number">11/16</div>
-        <div class="container">
-            <h2>Intern AI Connect</h2>
-            <p class="subtitle">Smart matching for mentorship and teamwork</p>
-            
-            <div class="tech-item" style="max-width: 800px; margin: 2rem auto;">
-                <p style="font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
-                    Connect matches students with ideal mentors or teammates using AI scoring. It factors in track interest, engagement data, communication style, and performance.
-                </p>
-                <div style="background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange)); color: var(--white); padding: 1.5rem; border-radius: 12px; font-size: 1.2rem; font-weight: 600;">
-                    🧠 Uses a <strong>custom similarity model</strong> to generate compatibility scores and surface ideal matches — no random pairing.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 12: AdminLens -->
-    <section class="slide">
-        <div class="slide-number">12/16</div>
-        <div class="container">
-            <h2>AdminLens</h2>
-            <p class="subtitle">Partner dashboard with real-time insight</p>
-            
-            <div class="tech-item" style="max-width: 800px; margin: 2rem auto;">
-                <p style="font-size: 1.3rem; line-height: 1.7; margin-bottom: 2rem;">
-                    AdminLens gives schools and partners real-time views of student growth, engagement, and readiness.
-                </p>
-                <div style="background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange)); color: var(--white); padding: 1.5rem; border-radius: 12px; font-size: 1.2rem; font-weight: 600;">
-                    🧠 AI flags high-potential students based on <strong>behavioral scoring</strong> — not just grades — using time-series trend analysis.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 13: Roadmap -->
-    <section class="slide">
-        <div class="slide-number">13/16</div>
-        <div class="container">
-            <h2>Roadmap</h2>
-            <div class="roadmap-timeline">
-                <div class="roadmap-item">
-                    <div class="roadmap-period">Jul–Sep 2025</div>
-                    <div class="roadmap-content">
-                        <p>MVP live, 1 track, 10 students</p>
+            <div class="odds-grid">
+                <div class="odds-card favorite">
+                    <div class="rank-indicator">1</div>
+                    <div class="contestant-name">Laura</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">1.94x</div>
+                        <button class="bet-button">BET NOW</button>
                     </div>
                 </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-period">Oct–Dec 2025</div>
-                    <div class="roadmap-content">
-                        <p>AI cert logic + 50+ students</p>
+                
+                <div class="odds-card favorite">
+                    <div class="rank-indicator">2</div>
+                    <div class="contestant-name">Shakh</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">2.52x</div>
+                        <button class="bet-button">BET NOW</button>
                     </div>
                 </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-period">Jan–Jun 2026</div>
-                    <div class="roadmap-content">
-                        <p>Social modules, verified certs, 3+ B2B partners</p>
+                
+                <div class="odds-card">
+                    <div class="rank-indicator">3</div>
+                    <div class="contestant-name">Rayimbek</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">6.29x</div>
+                        <button class="bet-button">BET NOW</button>
                     </div>
                 </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-period">Jul 2026+</div>
-                    <div class="roadmap-content">
-                        <p>Scale across CIS region</p>
+                
+                <div class="odds-card">
+                    <div class="rank-indicator">4</div>
+                    <div class="contestant-name">Sholpan</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">7.74x</div>
+                        <button class="bet-button">BET NOW</button>
+                    </div>
+                </div>
+                
+                <div class="odds-card">
+                    <div class="rank-indicator">5</div>
+                    <div class="contestant-name">Temirlan</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">11.58x</div>
+                        <button class="bet-button">BET NOW</button>
+                    </div>
+                </div>
+                
+                <div class="odds-card">
+                    <div class="rank-indicator">6</div>
+                    <div class="contestant-name">Kamila</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">11.58x</div>
+                        <button class="bet-button">BET NOW</button>
+                    </div>
+                </div>
+                
+                <div class="odds-card longshot">
+                    <div class="rank-indicator">7</div>
+                    <div class="contestant-name">Arystan</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">25.02x</div>
+                        <button class="bet-button">BET NOW</button>
+                    </div>
+                </div>
+                
+                <div class="odds-card longshot">
+                    <div class="rank-indicator">8</div>
+                    <div class="contestant-name">Nurtilek</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">36.44x</div>
+                        <button class="bet-button">BET NOW</button>
+                    </div>
+                </div>
+                
+                <div class="odds-card longshot">
+                    <div class="rank-indicator">9</div>
+                    <div class="contestant-name">Dalen</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">43.9x</div>
+                        <button class="bet-button">BET NOW</button>
+                    </div>
+                </div>
+                
+                <div class="odds-card longshot">
+                    <div class="rank-indicator">10</div>
+                    <div class="contestant-name">Asyl</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">43.9x</div>
+                        <button class="bet-button">BET NOW</button>
+                    </div>
+                </div>
+                
+                <div class="odds-card longshot">
+                    <div class="rank-indicator">11</div>
+                    <div class="contestant-name">Arnur</div>
+                    <div class="odds-display">
+                        <div class="odds-multiplier">191.29x</div>
+                        <button class="bet-button">BET NOW</button>
                     </div>
                 </div>
             </div>
+        </section>
+        
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> Odds are determined by neural consensus. n! Bet is not responsible for heartbreak, hope, or humiliation.</p>
         </div>
-    </section>
-
-    <!-- Slide 14: Business Model -->
-    <section class="slide">
-        <div class="slide-number">14/16</div>
-        <div class="container">
-            <h2>Business Model</h2>
-            <div class="business-model">
-                <div class="model-card">
-                    <h4>Freemium</h4>
-                    <p>Basic track access and community features</p>
-                </div>
-                <div class="model-card">
-                    <h4>Subscription</h4>
-                    <div class="price">HKD 99/mo</div>
-                    <p>Full tracks, mentorship, certification</p>
-                </div>
-                <div class="model-card">
-                    <h4>Verified Certificates</h4>
-                    <p>Premium certification with blockchain verification</p>
-                </div>
-                <div class="model-card">
-                    <h4>B2B Partnerships</h4>
-                    <p>Companies pay for talent pipeline access</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 15: GTM Strategy -->
-    <section class="slide">
-        <div class="slide-number">15/16</div>
-        <div class="container">
-            <h2>Go-to-Market Strategy</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h4>🏫 Educational Partnerships</h4>
-                    <p>School clubs, regional programs, partnerships</p>
-                </div>
-                <div class="feature-card">
-                    <h4>💬 Digital Communities</h4>
-                    <p>Telegram, Discord community building</p>
-                </div>
-                <div class="feature-card">
-                    <h4>👨‍🎓 Student Ambassadors</h4>
-                    <p>Peer-to-peer growth through ambassador program</p>
-                </div>
-                <div class="feature-card">
-                    <h4>🤝 NGO Partnerships</h4>
-                    <p>Social organizations for inclusivity track</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Slide 16: Vision -->
-    <section class="slide">
-        <div class="slide-number">16/16</div>
-        <div class="container">
-            <h2>Vision</h2>
-            <div class="metrics">
-                <div class="metric">
-                    <span class="metric-number">10,000+</span>
-                    <span class="metric-label">Students Certified by 2027</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-number">#1</span>
-                    <span class="metric-label"> Asia's Student-to-Internship Engine</span>
-                </div>
-            </div>
-            <ul class="solution-list">
-                <li>Become Asia's trusted student-to-internship engine</li>
-                <li>Build reputation scoring layer for teen talent</li>
-                <li>Move from platform → infrastructure</li>
-                <li>Create the standard for student capability verification</li>
-            </ul>
-        </div>
-    </section>
+    </div>
 </body>
 </html> 
