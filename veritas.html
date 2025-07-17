@@ -3,345 +3,915 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>n! Bet - SAT Mock Betting Odds</title>
+    <title>Intern AI - From Idea to Impact</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            padding: 40px 0;
-            border-bottom: 2px solid #00ff88;
-        }
-        
-        .logo {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #00ff88, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            color: #cccccc;
-            font-weight: 300;
-        }
-        
-        .live-indicator {
-            display: inline-block;
-            background: #ff0040;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-top: 15px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-        
-        .betting-section {
-            margin-top: 40px;
-        }
-        
-        .section-title {
-            font-size: 1.5rem;
-            color: #00ff88;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .odds-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        
-        .odds-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #333333;
             overflow: hidden;
         }
-        
-        .odds-card:hover {
-            transform: translateY(-5px);
-            border-color: #00ff88;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-        
-        .odds-card.favorite {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
-            border-color: #00ff88;
-        }
-        
-        .odds-card.favorite::before {
-            content: "★ FAVORITE";
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #00ff88;
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-        
-        .contestant-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-        
-        .odds-display {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .odds-multiplier {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #00ff88;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-        }
-        
-        .bet-button {
-            background: linear-gradient(45deg, #00ff88, #00d4ff);
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .bet-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
-        }
-        
-        .rank-indicator {
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            background: #ff0040;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
         }
-        
-        .longshot {
-            border-color: #ff6b00;
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 80%;
+            padding: 60px;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
         }
-        
-        .longshot .odds-multiplier {
-            color: #ff6b00;
-            text-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+
+        .slide.active {
+            display: flex;
         }
-        
-        .disclaimer {
+
+        h1 {
+            color: #ff6600;
+            font-size: 3.5em;
+            font-weight: 700;
             text-align: center;
-            margin-top: 60px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+            line-height: 1.2;
         }
-        
-        .disclaimer p {
-            font-style: italic;
-            color: #888;
-            font-size: 0.9rem;
+
+        h2 {
+            color: #ff6600;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ff6600;
+            padding-bottom: 10px;
         }
-        
-        .countdown {
-            text-align: center;
+
+        h3 {
+            color: #ff6600;
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        .highlight {
+            background: #ff6600;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
             margin: 30px 0;
-            font-size: 1.1rem;
-            color: #00d4ff;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: 600;
         }
-        
-        .countdown strong {
-            color: #00ff88;
-            font-size: 1.3rem;
+
+        .center {
+            text-align: center;
         }
-        
+
+        .large {
+            font-size: 1.5em;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 2px solid #ff6600;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background: #ff6600;
+            color: white;
+            font-weight: 700;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #ff6600;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #e55a00;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: #ff6600;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #666;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #999;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .process-step {
+            background: #f8f9fa;
+            border-left: 4px solid #ff6600;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .process-step h4 {
+            color: #ff6600;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .contact-info h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: #ff6600;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .footer-text {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .timeline-item {
+            background: #f8f9fa;
+            border-left: 4px solid #ff6600;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .timeline-item strong {
+            color: #ff6600;
+        }
+
         @media (max-width: 768px) {
-            .odds-grid {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+            
+            p, li {
+                font-size: 1.1em;
+            }
+            
+            .two-column {
                 grid-template-columns: 1fr;
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .container {
-                padding: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1 class="logo">n! Bet</h1>
-            <p class="tagline">Place Your Wagers on Academic Glory!</p>
-            <div class="live-indicator">🔴 LIVE</div>
-        </header>
-        
-        <div class="countdown">
-            <strong>⏰ Mock Exam Results:</strong> Coming Soon!
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>From Idea to Impact</h1>
+            <div class="subtitle">Building Tomorrow's Careers Through Innovation</div>
+            <div class="tagline">Intern AI Info Session<br>For Kazakh High School Students</div>
         </div>
-        
-        <section class="betting-section">
-            <h2 class="section-title">🎯 SAT Mock Exam - Winner Takes All</h2>
+
+        <!-- Slide 2: What Is a Startup? -->
+        <div class="slide">
+            <h2>What Is a Startup?</h2>
+            <p>A <strong>startup</strong> is a young company designed to solve problems through innovative technology and business models.</p>
             
-            <div class="odds-grid">
-                <div class="odds-card favorite">
-                    <div class="rank-indicator">1</div>
-                    <div class="contestant-name">Laura</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">1.94x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
+            <h3>Key Characteristics:</h3>
+            <ul>
+                <li><strong>Fast-growing</strong> - Aims to scale rapidly</li>
+                <li><strong>Technology-driven</strong> - Uses cutting-edge tools and platforms</li>
+                <li><strong>Problem-solving</strong> - Addresses real market needs</li>
+                <li><strong>Risk-taking</strong> - Willing to experiment and pivot</li>
+                <li><strong>Impact-focused</strong> - Seeks to create meaningful change</li>
+            </ul>
+            
+            <p><strong>Examples you know:</strong> Kaspi, Yandex, Airbnb, Uber, Instagram</p>
+            
+            <div class="highlight">
+                Startups don't just build products - they build the future
+            </div>
+        </div>
+
+        <!-- Slide 3: Why Startups Matter to You -->
+        <div class="slide">
+            <h2>Why Startups Matter to You</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Career Opportunities:</h3>
+                    <ul>
+                        <li><strong>High growth potential</strong> - Join companies that scale 10x-100x</li>
+                        <li><strong>Diverse skill development</strong> - Wear multiple hats, learn fast</li>
+                        <li><strong>Innovation exposure</strong> - Work with latest technologies</li>
+                        <li><strong>Global impact</strong> - Reach millions of users worldwide</li>
+                    </ul>
                 </div>
-                
-                <div class="odds-card favorite">
-                    <div class="rank-indicator">2</div>
-                    <div class="contestant-name">Shakh</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">2.52x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card">
-                    <div class="rank-indicator">3</div>
-                    <div class="contestant-name">Rayimbek</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">3.59x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card">
-                    <div class="rank-indicator">4</div>
-                    <div class="contestant-name">Sholpan</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">7.74x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card">
-                    <div class="rank-indicator">5</div>
-                    <div class="contestant-name">Temirlan</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">11.58x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card">
-                    <div class="rank-indicator">6</div>
-                    <div class="contestant-name">Kamila</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">11.58x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card longshot">
-                    <div class="rank-indicator">7</div>
-                    <div class="contestant-name">Arystan</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">25.02x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card longshot">
-                    <div class="rank-indicator">8</div>
-                    <div class="contestant-name">Nurtilek</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">36.44x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card longshot">
-                    <div class="rank-indicator">9</div>
-                    <div class="contestant-name">Dalen</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">43.9x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card longshot">
-                    <div class="rank-indicator">10</div>
-                    <div class="contestant-name">Asyl</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">43.9x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
-                </div>
-                
-                <div class="odds-card longshot">
-                    <div class="rank-indicator">11</div>
-                    <div class="contestant-name">Arnur</div>
-                    <div class="odds-display">
-                        <div class="odds-multiplier">1901.29x</div>
-                        <button class="bet-button">BET NOW</button>
-                    </div>
+                <div>
+                    <h3>For Kazakhstan:</h3>
+                    <ul>
+                        <li><strong>Economic diversification</strong> - Beyond oil and mining</li>
+                        <li><strong>Job creation</strong> - New industries, new opportunities</li>
+                        <li><strong>International competitiveness</strong> - Competing on global stage</li>
+                        <li><strong>Youth empowerment</strong> - Leading technological transformation</li>
+                    </ul>
                 </div>
             </div>
-        </section>
-        
-        <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> Odds are determined by neural consensus. n! Bet is not responsible for heartbreak, hope, or humiliation.</p>
+            
+            <div class="highlight">
+                The next generation of Kazakh leaders will come from startups
+            </div>
+        </div>
+
+        <!-- Slide 4: Typical Startup Journey -->
+        <div class="slide">
+            <h2>Typical Startup Journey</h2>
+            <div class="process-step">
+                <h4>1. Idea</h4>
+                <p>Identifying a problem worth solving</p>
+            </div>
+            <div class="process-step">
+                <h4>2. Research</h4>
+                <p>Validating market need and competition</p>
+            </div>
+            <div class="process-step">
+                <h4>3. MVP</h4>
+                <p>Building Minimum Viable Product</p>
+            </div>
+            <div class="process-step">
+                <h4>4. Testing</h4>
+                <p>Getting user feedback and iterating</p>
+            </div>
+            <div class="process-step">
+                <h4>5. Funding</h4>
+                <p>Raising capital to grow faster</p>
+            </div>
+            <div class="process-step">
+                <h4>6. Scale</h4>
+                <p>Expanding to new markets and features</p>
+            </div>
+            <div class="process-step">
+                <h4>7. Exit</h4>
+                <p>IPO, acquisition, or continued growth</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Skills That Power Startups -->
+        <div class="slide">
+            <h2>Skills That Power Startups</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Technical Skills:</h3>
+                    <ul>
+                        <li><strong>Programming</strong> - Python, JavaScript, mobile development</li>
+                        <li><strong>Data analysis</strong> - Understanding metrics and user behavior</li>
+                        <li><strong>Design</strong> - UI/UX, product design thinking</li>
+                        <li><strong>Digital marketing</strong> - SEO, social media, content creation</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Soft Skills:</h3>
+                    <ul>
+                        <li><strong>Problem-solving</strong> - Creative thinking and persistence</li>
+                        <li><strong>Communication</strong> - Presenting ideas clearly</li>
+                        <li><strong>Adaptability</strong> - Thriving in fast-changing environments</li>
+                        <li><strong>Leadership</strong> - Taking initiative and inspiring others</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                You don't need to be a coding genius - diverse skills are valued
+            </div>
+        </div>
+
+        <!-- Slide 6: How to Start Now -->
+        <div class="slide">
+            <h2>How to Start Now</h2>
+            <div class="two-column">
+                <div>
+                    <h3>While Still in School:</h3>
+                    <ul>
+                        <li><strong>Learn by doing</strong> - Build small projects, websites, apps</li>
+                        <li><strong>Join communities</strong> - Tech meetups, online forums, hackathons</li>
+                        <li><strong>Find mentors</strong> - Connect with professionals in your field</li>
+                        <li><strong>Gain experience</strong> - Internships, part-time work, volunteering</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Post-Graduation Paths:</h3>
+                    <ul>
+                        <li><strong>Join existing startups</strong> - Learn from experienced teams</li>
+                        <li><strong>Start your own</strong> - With co-founders and clear vision</li>
+                        <li><strong>Corporate innovation</strong> - Intrapreneurship in large companies</li>
+                        <li><strong>Further education</strong> - Specialized degrees or certifications</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                The best time to start is now - every expert was once a beginner
+            </div>
+        </div>
+
+        <!-- Slide 7: Internships: The Missing Bridge -->
+        <div class="slide">
+            <h2>Internships: The Missing Bridge</h2>
+            <div class="two-column">
+                <div>
+                    <h3>The Challenge:</h3>
+                    <ul>
+                        <li><strong>Experience gap</strong> - Need experience to get experience</li>
+                        <li><strong>Limited opportunities</strong> - Few quality internships available</li>
+                        <li><strong>Mismatch</strong> - Students and companies struggle to connect</li>
+                        <li><strong>Geographic barriers</strong> - Best opportunities often in other cities/countries</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>The Solution:</h3>
+                    <ul>
+                        <li><strong>AI-powered matching</strong> - Connect students with perfect-fit opportunities</li>
+                        <li><strong>Verified credentials</strong> - Prove your skills with trusted certifications</li>
+                        <li><strong>Global access</strong> - Work with companies worldwide</li>
+                        <li><strong>Structured support</strong> - Guidance throughout the process</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                Internships are the fastest path from student to professional
+            </div>
+        </div>
+
+        <!-- Slide 8: Meet Intern AI -->
+        <div class="slide">
+            <h2>Meet Intern AI</h2>
+            <p><strong>Mission:</strong> Connecting talented Kazakh students with global internship opportunities through AI-driven matching and verified skill assessment.</p>
+            
+            <p><strong>Founded:</strong> 2024 | <strong>Headquarters:</strong> United States | <strong>Focus:</strong> Kazakhstan</p>
+            
+            <h3>The Problem We Solve:</h3>
+            <ul>
+                <li>Students can't find quality internships</li>
+                <li>Companies struggle to identify skilled candidates</li>
+                <li>Geographic and cultural barriers limit opportunities</li>
+                <li>No standardized way to verify student capabilities</li>
+            </ul>
+            
+            <h3>Our Approach:</h3>
+            <ul>
+                <li><strong>AI-powered matching</strong> between students and companies</li>
+                <li><strong>Blockchain-verified certifications</strong> for skill validation</li>
+                <li><strong>Mandatory volunteering</strong> for character development</li>
+                <li><strong>End-to-end support</strong> throughout the internship journey</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: How Intern AI Works -->
+        <div class="slide">
+            <h2>How Intern AI Works (High-Level)</h2>
+            <div class="process-step">
+                <h4>1. Registration</h4>
+                <p>Create comprehensive student profile</p>
+            </div>
+            <div class="process-step">
+                <h4>2. Assessment</h4>
+                <p>Demonstrate skills through verified tests</p>
+            </div>
+            <div class="process-step">
+                <h4>3. Matching</h4>
+                <p>AI finds best-fit opportunities</p>
+            </div>
+            <div class="process-step">
+                <h4>4. Application</h4>
+                <p>Streamlined application process</p>
+            </div>
+            <div class="process-step">
+                <h4>5. Placement</h4>
+                <p>Successful internship placement</p>
+            </div>
+            <div class="process-step">
+                <h4>6. Support</h4>
+                <p>Continuous guidance and monitoring</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Platform Modules -->
+        <div class="slide">
+            <h2>Platform Modules</h2>
+            <table>
+                <tr>
+                    <th>Module</th>
+                    <th>Purpose</th>
+                    <th>Key Features</th>
+                </tr>
+                <tr>
+                    <td><strong>Analytics</strong></td>
+                    <td>Performance tracking and insights</td>
+                    <td>Real-time dashboards, progress monitoring</td>
+                </tr>
+                <tr>
+                    <td><strong>Veritas</strong></td>
+                    <td>Skill verification and certification</td>
+                    <td>Blockchain-secured credentials, skill assessment</td>
+                </tr>
+                <tr>
+                    <td><strong>CredibilityGuard</strong></td>
+                    <td>Fraud prevention and trust</td>
+                    <td>Identity verification, background checks</td>
+                </tr>
+                <tr>
+                    <td><strong>Connect</strong></td>
+                    <td>Networking and communication</td>
+                    <td>Student-company matching, messaging system</td>
+                </tr>
+                <tr>
+                    <td><strong>AdminLens</strong></td>
+                    <td>Platform administration</td>
+                    <td>User management, content moderation</td>
+                </tr>
+            </table>
+            
+            <h3>Key Benefits:</h3>
+            <ul>
+                <li><strong>Integrated ecosystem</strong> - All tools work together seamlessly</li>
+                <li><strong>Data-driven decisions</strong> - Analytics guide improvements</li>
+                <li><strong>Trust and security</strong> - Verified credentials and identity</li>
+                <li><strong>Global reach</strong> - Connect with international opportunities</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: Intern AI Analytics -->
+        <div class="slide">
+            <h2>Intern AI Analytics</h2>
+            <h3>Real-Time Performance Tracking</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3>For Students:</h3>
+                    <ul>
+                        <li><strong>Skill progression</strong> - Track improvement over time</li>
+                        <li><strong>Application success rates</strong> - Optimize your approach</li>
+                        <li><strong>Market insights</strong> - See trending skills and industries</li>
+                        <li><strong>Personalized recommendations</strong> - AI suggests next steps</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>For Companies:</h3>
+                    <ul>
+                        <li><strong>Candidate quality metrics</strong> - Find the best talent</li>
+                        <li><strong>Hiring pipeline analytics</strong> - Optimize recruitment process</li>
+                        <li><strong>ROI measurement</strong> - Track internship program success</li>
+                        <li><strong>Predictive modeling</strong> - Identify high-potential candidates</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                Data-driven decisions lead to better outcomes for everyone
+            </div>
+        </div>
+
+        <!-- Slide 12: Veritas -->
+        <div class="slide">
+            <h2>Veritas</h2>
+            <h3>Blockchain-Verified Skill Certification</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3>How It Works:</h3>
+                    <ul>
+                        <li><strong>Comprehensive assessments</strong> - Test practical skills, not just theory</li>
+                        <li><strong>Blockchain security</strong> - Tamper-proof credential storage</li>
+                        <li><strong>Industry recognition</strong> - Certificates valued by employers</li>
+                        <li><strong>Continuous updates</strong> - Skills stay current with market needs</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Available Certifications:</h3>
+                    <ul>
+                        <li><strong>Programming</strong> - Python, JavaScript, Java, C++</li>
+                        <li><strong>Data Science</strong> - Analytics, machine learning, visualization</li>
+                        <li><strong>Digital Marketing</strong> - SEO, social media, content strategy</li>
+                        <li><strong>Business Skills</strong> - Project management, communication, leadership</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                Your skills are your currency - make them verifiable and valuable
+            </div>
+        </div>
+
+        <!-- Slide 13: CredibilityGuard -->
+        <div class="slide">
+            <h2>CredibilityGuard</h2>
+            <h3>Trust and Security Infrastructure</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Identity Verification:</h3>
+                    <ul>
+                        <li><strong>Document validation</strong> - Passport, student ID, transcripts</li>
+                        <li><strong>Biometric confirmation</strong> - Facial recognition, fingerprints</li>
+                        <li><strong>Educational background</strong> - School and grade verification</li>
+                        <li><strong>Reference checks</strong> - Teachers, mentors, previous employers</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Fraud Prevention:</h3>
+                    <ul>
+                        <li><strong>AI-powered detection</strong> - Identify suspicious patterns</li>
+                        <li><strong>Blockchain immutability</strong> - Prevent credential tampering</li>
+                        <li><strong>Continuous monitoring</strong> - Ongoing security assessment</li>
+                        <li><strong>Incident response</strong> - Quick resolution of security issues</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                Trust is the foundation of all successful partnerships
+            </div>
+        </div>
+
+        <!-- Slide 14: Connect -->
+        <div class="slide">
+            <h2>Connect</h2>
+            <h3>Intelligent Matching and Communication</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3>AI-Powered Matching:</h3>
+                    <ul>
+                        <li><strong>Skills alignment</strong> - Match student abilities with company needs</li>
+                        <li><strong>Cultural fit</strong> - Consider personality and values</li>
+                        <li><strong>Career goals</strong> - Align with student aspirations</li>
+                        <li><strong>Geographic preferences</strong> - Remote, local, or international</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Communication Tools:</h3>
+                    <ul>
+                        <li><strong>Secure messaging</strong> - Direct communication with employers</li>
+                        <li><strong>Video interviewing</strong> - Built-in interview platform</li>
+                        <li><strong>Document sharing</strong> - Portfolios, resumes, certifications</li>
+                        <li><strong>Progress tracking</strong> - Monitor application status</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                The right connection can change your entire career trajectory
+            </div>
+        </div>
+
+        <!-- Slide 15: AdminLens -->
+        <div class="slide">
+            <h2>AdminLens</h2>
+            <h3>Platform Administration and Oversight</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3>User Management:</h3>
+                    <ul>
+                        <li><strong>Role-based access</strong> - Students, companies, administrators</li>
+                        <li><strong>Permission controls</strong> - Granular security settings</li>
+                        <li><strong>Activity monitoring</strong> - Track user engagement</li>
+                        <li><strong>Support systems</strong> - Help desk and troubleshooting</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Content Management:</h3>
+                    <ul>
+                        <li><strong>Quality assurance</strong> - Review and approve content</li>
+                        <li><strong>Compliance monitoring</strong> - Ensure regulatory adherence</li>
+                        <li><strong>Performance optimization</strong> - System health and speed</li>
+                        <li><strong>Data backup</strong> - Secure information storage</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                Behind every great platform is robust administration
+            </div>
+        </div>
+
+        <!-- Slide 16: Mandatory Volunteering -->
+        <div class="slide">
+            <h2>Mandatory Volunteering</h2>
+            <h3>Character Development Through Service</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Why Volunteering Matters:</h3>
+                    <ul>
+                        <li><strong>Social responsibility</strong> - Contributing to community welfare</li>
+                        <li><strong>Skill development</strong> - Leadership, teamwork, problem-solving</li>
+                        <li><strong>Network building</strong> - Connect with diverse groups</li>
+                        <li><strong>Personal growth</strong> - Develop empathy and perspective</li>
+                    </ul>
+                    
+                    <h3>Volunteer Opportunities:</h3>
+                    <ul>
+                        <li><strong>Education</strong> - Tutoring younger students</li>
+                        <li><strong>Environment</strong> - Clean-up and conservation projects</li>
+                        <li><strong>Technology</strong> - Teaching digital skills to seniors</li>
+                        <li><strong>Community</strong> - Local event organization and support</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Integration with Internships:</h3>
+                    <ul>
+                        <li><strong>Requirement</strong> - 20 hours minimum before internship eligibility</li>
+                        <li><strong>Verification</strong> - Tracked and certified through platform</li>
+                        <li><strong>Recognition</strong> - Highlighted in student profiles</li>
+                        <li><strong>Ongoing commitment</strong> - Encouraged throughout career</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Student Journey Storyboard -->
+        <div class="slide">
+            <h2>Student Journey Storyboard</h2>
+            
+            <div class="timeline-item">
+                <strong>Month 1:</strong> Registration, assessment, and certification
+            </div>
+            <div class="timeline-item">
+                <strong>Month 2:</strong> Volunteer work and AI matching
+            </div>
+            <div class="timeline-item">
+                <strong>Month 3:</strong> Applications and interviews
+            </div>
+            <div class="timeline-item">
+                <strong>Months 4-6:</strong> Internship experience
+            </div>
+            <div class="timeline-item">
+                <strong>Ongoing:</strong> Career support and alumni network
+            </div>
+            
+            <h3>Detailed Timeline:</h3>
+            <ul>
+                <li><strong>Week 1:</strong> Sign up and complete profile</li>
+                <li><strong>Weeks 2-3:</strong> Take skill assessments and earn certifications</li>
+                <li><strong>Weeks 4-7:</strong> Complete 20 hours of community service</li>
+                <li><strong>Week 8:</strong> AI matching and company selection</li>
+                <li><strong>Weeks 9-11:</strong> Apply to positions and interview</li>
+                <li><strong>Weeks 12-24:</strong> Complete internship with ongoing support</li>
+            </ul>
+        </div>
+
+        <!-- Slide 18: Launch Status -->
+        <div class="slide">
+            <h2>Launch Status</h2>
+            <h3>Current Phase: Beta Testing (Q1 2025)</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Beta Features Available:</h3>
+                    <ul>
+                        <li><strong>Student registration</strong> - Profile creation and management</li>
+                        <li><strong>Skill assessments</strong> - Initial certification tests</li>
+                        <li><strong>Volunteer tracking</strong> - Community service verification</li>
+                        <li><strong>Company partnerships</strong> - Growing network of employers</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Coming Soon:</h3>
+                    <ul>
+                        <li><strong>Full AI matching</strong> - Complete algorithm deployment</li>
+                        <li><strong>Mobile app</strong> - iOS and Android applications</li>
+                        <li><strong>Global expansion</strong> - Additional countries and languages</li>
+                        <li><strong>Advanced analytics</strong> - Detailed performance insights</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p><strong>Target Launch:</strong> Q3 2025</p>
+            
+            <div class="highlight">
+                Be among the first to experience the future of career development
+            </div>
+        </div>
+
+        <!-- Slide 19: What You Gain -->
+        <div class="slide">
+            <h2>What You Gain</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Immediate Benefits:</h3>
+                    <ul>
+                        <li><strong>Verified credentials</strong> - Blockchain-certified skills</li>
+                        <li><strong>Global opportunities</strong> - Access to international internships</li>
+                        <li><strong>Professional network</strong> - Connect with industry leaders</li>
+                        <li><strong>Career guidance</strong> - Personalized development plans</li>
+                    </ul>
+                    
+                    <h3>Long-term Value:</h3>
+                    <ul>
+                        <li><strong>Competitive advantage</strong> - Stand out in job market</li>
+                        <li><strong>Higher earning potential</strong> - Skilled professionals earn more</li>
+                        <li><strong>Global mobility</strong> - Work anywhere in the world</li>
+                        <li><strong>Innovation mindset</strong> - Think like an entrepreneur</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>For Kazakhstan:</h3>
+                    <ul>
+                        <li><strong>Economic growth</strong> - Skilled workforce attracts investment</li>
+                        <li><strong>International reputation</strong> - Recognition as tech hub</li>
+                        <li><strong>Youth empowerment</strong> - Leading the digital transformation</li>
+                        <li><strong>Cultural bridge</strong> - Connecting East and West</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                Investing in your future starts with a single step
+            </div>
+        </div>
+
+        <!-- Slide 20: Call to Action -->
+        <div class="slide">
+            <h1>Ready to Level Up?</h1>
+            
+            <div class="contact-info">
+                <h3>Join the Intern AI Revolution</h3>
+                
+                <div class="center">
+                    <p><strong>Contact Information:</strong></p>
+                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p><strong>Email:</strong> info@intern-ai.com</p>
+                    <p><strong>Website:</strong> www.intern-ai.com</p>
+                    
+                    <div class="qr-placeholder">
+                        QR CODE
+                    </div>
+                    
+                    <p><strong>Follow Us:</strong></p>
+                    <p><strong>LinkedIn:</strong> /company/intern-ai</p>
+                    <p><strong>Twitter:</strong> @InternAI_Global</p>
+                    <p><strong>Instagram:</strong> @intern.ai.official</p>
+                </div>
+            </div>
+            
+            <div class="highlight large">
+                Your future starts now - Don't wait for opportunities, create them
+            </div>
         </div>
     </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">20</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <div class="footer-text">
+        Intern AI © 2025 · Building brighter careers with AI + community
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function changeSlide(direction) {
+            if (direction === 1 && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else if (direction === -1 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+        
+        // Initialize
+        showSlide(0);
+    </script>
 </body>
 </html> 
