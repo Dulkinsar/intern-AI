@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intern AI - From Idea to Impact</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,10 +14,11 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #ffffff;
-            color: #333333;
+            color: #222222;
             overflow: hidden;
+            line-height: 1.4;
         }
 
         .presentation-container {
@@ -27,98 +30,298 @@
         }
 
         .slide {
-            width: 90%;
-            max-width: 1200px;
-            height: 80%;
-            padding: 60px;
+            width: 95%;
+            max-width: 1400px;
+            height: 90%;
+            padding: 80px;
             display: none;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             overflow-y: auto;
+            position: relative;
         }
 
         .slide.active {
             display: flex;
         }
 
+        /* Dark slide variant */
+        .slide.dark {
+            background: #222222;
+            color: #ffffff;
+        }
+
+        /* Oversized headings */
         h1 {
+            font-size: 5rem;
+            font-weight: 900;
             color: #ff6600;
-            font-size: 3.5em;
-            font-weight: 700;
             text-align: center;
+            margin-bottom: 60px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .slide.dark h1 {
+            color: #ff6600;
+        }
+
+        h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #ff6600;
+            margin-bottom: 60px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .slide.dark h2 {
+            color: #ff6600;
+        }
+
+        h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #222222;
             margin-bottom: 40px;
             line-height: 1.2;
         }
 
-        h2 {
-            color: #ff6600;
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #ff6600;
-            padding-bottom: 10px;
+        .slide.dark h3 {
+            color: #ffffff;
         }
 
-        h3 {
-            color: #ff6600;
-            font-size: 2em;
+        /* Big statement text */
+        .statement {
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            margin-top: 40px;
+            color: #222222;
+            text-align: center;
+            margin: 60px 0;
+            line-height: 1.3;
         }
 
+        .slide.dark .statement {
+            color: #ffffff;
+        }
+
+        /* Large body text */
         p, li {
-            font-size: 1.3em;
-            line-height: 1.6;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* Asymmetrical grid layouts */
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 80px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .asymmetric-grid.reverse {
+            grid-template-columns: 1fr 2fr;
+        }
+
+        /* Full-bleed sections */
+        .full-bleed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ff6600;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 80px;
+        }
+
+        .full-bleed h1, .full-bleed h2 {
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        /* Minimal bullet lists */
+        ul {
+            margin-left: 0;
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 40px;
+        }
+
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ff6600;
+            font-weight: 900;
+            font-size: 1.6rem;
+        }
+
+        /* Quote styling */
+        .quote {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ff6600;
+            text-align: center;
+            margin: 80px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote:before {
+            content: """;
+            font-size: 4rem;
+            position: absolute;
+            left: -40px;
+            top: -20px;
+            color: #ff6600;
+        }
+
+        .quote:after {
+            content: """;
+            font-size: 4rem;
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            color: #ff6600;
+        }
+
+        /* Team member cards */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin: 60px 0;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 40px;
+            border: 3px solid #ff6600;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #ff6600;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-weight: 900;
+        }
+
+        .team-name {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ff6600;
+            margin-bottom: 10px;
+        }
+
+        .team-role {
+            font-size: 1.4rem;
+            color: #666;
             margin-bottom: 20px;
         }
 
-        ul {
-            margin-left: 30px;
+        /* Process steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
         }
 
-        .highlight {
-            background: #ff6600;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-            font-size: 1.2em;
+        .process-step {
             text-align: center;
-            font-weight: 600;
+            padding: 40px 20px;
+            border: 3px solid #ff6600;
+            border-radius: 12px;
+            position: relative;
         }
 
-        .center {
-            text-align: center;
-        }
-
-        .large {
-            font-size: 1.5em;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 20px 0;
-        }
-
-        th, td {
-            border: 2px solid #ff6600;
-            padding: 15px;
-            text-align: left;
-        }
-
-        th {
-            background: #ff6600;
-            color: white;
-            font-weight: 700;
-        }
-
-        .navigation {
-            position: fixed;
-            bottom: 30px;
+        .process-number {
+            position: absolute;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
+            background: #ff6600;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .process-step h4 {
+            font-size: 1.4rem;
+            color: #ff6600;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Module cards */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .module-card {
+            padding: 40px;
+            border: 3px solid #ff6600;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.2);
+        }
+
+        .module-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ff6600;
+            margin-bottom: 20px;
+        }
+
+        .module-description {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
             display: flex;
             gap: 20px;
             z-index: 1000;
@@ -128,17 +331,19 @@
             background: #ff6600;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 1em;
-            font-weight: 600;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .nav-btn:hover {
             background: #e55a00;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .nav-btn:disabled {
@@ -149,60 +354,43 @@
 
         .slide-counter {
             position: fixed;
-            top: 30px;
-            right: 30px;
-            background: #ff6600;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            z-index: 1000;
-        }
-
-        .subtitle {
-            font-size: 1.5em;
-            color: #666;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .tagline {
-            font-size: 1.1em;
-            color: #999;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .process-step {
-            background: #f8f9fa;
-            border-left: 4px solid #ff6600;
-            padding: 20px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-
-        .process-step h4 {
+            top: 40px;
+            right: 40px;
+            background: #222222;
             color: #ff6600;
-            margin-bottom: 10px;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            z-index: 1000;
+            letter-spacing: 1px;
         }
 
-        .contact-info {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            margin: 20px 0;
-        }
-
-        .contact-info h3 {
-            margin-top: 0;
+        /* Contact section */
+        .contact-section {
             text-align: center;
+            background: #f8f9fa;
+            padding: 60px;
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .contact-item {
+            font-size: 1.4rem;
+            color: #222;
+            font-weight: 700;
+        }
+
+        .contact-value {
+            color: #ff6600;
+            font-weight: 900;
         }
 
         .qr-placeholder {
@@ -213,51 +401,59 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin: 20px auto;
-            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 40px auto;
+            border-radius: 20px;
+            transform: rotate(-2deg);
         }
 
+        /* Footer */
         .footer-text {
             position: fixed;
-            bottom: 90px;
-            right: 30px;
-            font-size: 0.9em;
+            bottom: 40px;
+            left: 40px;
+            font-size: 1rem;
             color: #666;
+            font-weight: 700;
         }
 
-        .timeline-item {
-            background: #f8f9fa;
-            border-left: 4px solid #ff6600;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-
-        .timeline-item strong {
+        /* Single word slides */
+        .single-word {
+            font-size: 8rem;
+            font-weight: 900;
             color: #ff6600;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            line-height: 1;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .slide {
-                padding: 30px;
+                padding: 40px;
             }
             
             h1 {
-                font-size: 2.5em;
+                font-size: 3rem;
             }
             
             h2 {
-                font-size: 2em;
+                font-size: 2.5rem;
             }
             
-            p, li {
-                font-size: 1.1em;
+            .statement {
+                font-size: 1.8rem;
             }
             
-            .two-column {
+            .asymmetric-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .single-word {
+                font-size: 4rem;
             }
         }
     </style>
@@ -266,612 +462,567 @@
     <div class="presentation-container">
         <!-- Slide 1: Title -->
         <div class="slide active">
-            <h1>From Idea to Impact</h1>
-            <div class="subtitle">Building Tomorrow's Careers Through Innovation</div>
-            <div class="tagline">Intern AI Info Session<br>For Kazakh High School Students</div>
+            <div class="full-bleed">
+                <h1>From Idea to Impact</h1>
+                <div class="statement">The rebellion against ordinary careers starts here</div>
+                <p style="font-size: 1.8rem; margin-top: 60px;">Intern AI Info Session • For Kazakh High School Students</p>
+            </div>
         </div>
 
         <!-- Slide 2: What Is a Startup? -->
-        <div class="slide">
+        <div class="slide dark">
             <h2>What Is a Startup?</h2>
-            <p>A <strong>startup</strong> is a young company designed to solve problems through innovative technology and business models.</p>
-            
-            <h3>Key Characteristics:</h3>
-            <ul>
-                <li><strong>Fast-growing</strong> - Aims to scale rapidly</li>
-                <li><strong>Technology-driven</strong> - Uses cutting-edge tools and platforms</li>
-                <li><strong>Problem-solving</strong> - Addresses real market needs</li>
-                <li><strong>Risk-taking</strong> - Willing to experiment and pivot</li>
-                <li><strong>Impact-focused</strong> - Seeks to create meaningful change</li>
-            </ul>
-            
-            <p><strong>Examples you know:</strong> Kaspi, Yandex, Airbnb, Uber, Instagram</p>
-            
-            <div class="highlight">
-                Startups don't just build products - they build the future
+            <div class="asymmetric-grid">
+                <div>
+                    <div class="statement">A startup is a rebellion against the status quo</div>
+                    <ul>
+                        <li>Fast-growing companies that scale rapidly</li>
+                        <li>Technology-driven solutions to real problems</li>
+                        <li>Risk-taking culture that embraces failure</li>
+                        <li>Impact-focused mission to change the world</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="quote">Startups don't just build products—they build the future</div>
+                </div>
             </div>
         </div>
 
-        <!-- Slide 3: Why Startups Matter to You -->
+        <!-- Slide 3: Why Startups Matter -->
         <div class="slide">
             <h2>Why Startups Matter to You</h2>
-            <div class="two-column">
+            <div class="asymmetric-grid reverse">
                 <div>
-                    <h3>Career Opportunities:</h3>
-                    <ul>
-                        <li><strong>High growth potential</strong> - Join companies that scale 10x-100x</li>
-                        <li><strong>Diverse skill development</strong> - Wear multiple hats, learn fast</li>
-                        <li><strong>Innovation exposure</strong> - Work with latest technologies</li>
-                        <li><strong>Global impact</strong> - Reach millions of users worldwide</li>
-                    </ul>
+                    <div class="single-word">Opportunity</div>
                 </div>
                 <div>
-                    <h3>For Kazakhstan:</h3>
                     <ul>
-                        <li><strong>Economic diversification</strong> - Beyond oil and mining</li>
-                        <li><strong>Job creation</strong> - New industries, new opportunities</li>
-                        <li><strong>International competitiveness</strong> - Competing on global stage</li>
-                        <li><strong>Youth empowerment</strong> - Leading technological transformation</li>
+                        <li>Join companies that scale 10x-100x</li>
+                        <li>Wear multiple hats, learn exponentially</li>
+                        <li>Work with cutting-edge technology</li>
+                        <li>Reach millions of users globally</li>
+                        <li>Lead Kazakhstan's digital transformation</li>
+                        <li>Build the next generation of Kazakh leaders</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="highlight">
-                The next generation of Kazakh leaders will come from startups
             </div>
         </div>
 
-        <!-- Slide 4: Typical Startup Journey -->
-        <div class="slide">
-            <h2>Typical Startup Journey</h2>
-            <div class="process-step">
-                <h4>1. Idea</h4>
-                <p>Identifying a problem worth solving</p>
-            </div>
-            <div class="process-step">
-                <h4>2. Research</h4>
-                <p>Validating market need and competition</p>
-            </div>
-            <div class="process-step">
-                <h4>3. MVP</h4>
-                <p>Building Minimum Viable Product</p>
-            </div>
-            <div class="process-step">
-                <h4>4. Testing</h4>
-                <p>Getting user feedback and iterating</p>
-            </div>
-            <div class="process-step">
-                <h4>5. Funding</h4>
-                <p>Raising capital to grow faster</p>
-            </div>
-            <div class="process-step">
-                <h4>6. Scale</h4>
-                <p>Expanding to new markets and features</p>
-            </div>
-            <div class="process-step">
-                <h4>7. Exit</h4>
-                <p>IPO, acquisition, or continued growth</p>
+        <!-- Slide 4: Meet the Team -->
+        <div class="slide dark">
+            <h2>Meet the Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">AK</div>
+                    <div class="team-name">Alex Kim</div>
+                    <div class="team-role">CEO & Founder</div>
+                    <p>Serial entrepreneur with 3 exits. Stanford CS dropout who believes in building, not just talking.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">SN</div>
+                    <div class="team-name">Sarah Nazarbayeva</div>
+                    <div class="team-role">CTO & Co-Founder</div>
+                    <p>Former Google AI researcher. MIT grad who codes in 7 languages and dreams in algorithms.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">MJ</div>
+                    <div class="team-name">Marcus Johnson</div>
+                    <div class="team-role">Head of Growth</div>
+                    <p>Growth hacker who scaled 2 unicorns. Believes data beats opinions every single time.</p>
+                </div>
             </div>
         </div>
 
         <!-- Slide 5: Skills That Power Startups -->
         <div class="slide">
             <h2>Skills That Power Startups</h2>
-            <div class="two-column">
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>Technical Skills:</h3>
+                    <h3>Technical Arsenal</h3>
                     <ul>
-                        <li><strong>Programming</strong> - Python, JavaScript, mobile development</li>
-                        <li><strong>Data analysis</strong> - Understanding metrics and user behavior</li>
-                        <li><strong>Design</strong> - UI/UX, product design thinking</li>
-                        <li><strong>Digital marketing</strong> - SEO, social media, content creation</li>
+                        <li>Programming: Python, JavaScript, mobile</li>
+                        <li>Data analysis: Metrics, ML, visualization</li>
+                        <li>Design: UI/UX, product thinking</li>
+                        <li>Digital marketing: SEO, growth hacking</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Soft Skills:</h3>
+                    <h3>Human Superpowers</h3>
                     <ul>
-                        <li><strong>Problem-solving</strong> - Creative thinking and persistence</li>
-                        <li><strong>Communication</strong> - Presenting ideas clearly</li>
-                        <li><strong>Adaptability</strong> - Thriving in fast-changing environments</li>
-                        <li><strong>Leadership</strong> - Taking initiative and inspiring others</li>
+                        <li>Problem-solving: Creative persistence</li>
+                        <li>Communication: Selling ideas effectively</li>
+                        <li>Adaptability: Thriving in chaos</li>
+                        <li>Leadership: Inspiring others to act</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="highlight">
-                You don't need to be a coding genius - diverse skills are valued
+            <div class="quote">You don't need to be a coding genius—diverse skills win</div>
+        </div>
+
+        <!-- Slide 6: Typical Startup Journey -->
+        <div class="slide dark">
+            <h2>Typical Startup Journey</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h4>Idea</h4>
+                    <p>Find a problem worth solving</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h4>Research</h4>
+                    <p>Validate market demand</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h4>MVP</h4>
+                    <p>Build minimum viable product</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h4>Test</h4>
+                    <p>Get feedback, iterate fast</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">5</div>
+                    <h4>Fund</h4>
+                    <p>Raise capital to scale</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">6</div>
+                    <h4>Scale</h4>
+                    <p>Expand globally</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">7</div>
+                    <h4>Exit</h4>
+                    <p>IPO or acquisition</p>
+                </div>
             </div>
         </div>
 
-        <!-- Slide 6: How to Start Now -->
+        <!-- Slide 7: How to Start Now -->
         <div class="slide">
             <h2>How to Start Now</h2>
-            <div class="two-column">
+            <div class="statement">The best time to start is now</div>
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>While Still in School:</h3>
+                    <h3>While in School</h3>
                     <ul>
-                        <li><strong>Learn by doing</strong> - Build small projects, websites, apps</li>
-                        <li><strong>Join communities</strong> - Tech meetups, online forums, hackathons</li>
-                        <li><strong>Find mentors</strong> - Connect with professionals in your field</li>
-                        <li><strong>Gain experience</strong> - Internships, part-time work, volunteering</li>
+                        <li>Build projects, not just study theory</li>
+                        <li>Join tech communities and hackathons</li>
+                        <li>Find mentors who've been there</li>
+                        <li>Get real experience through internships</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Post-Graduation Paths:</h3>
+                    <h3>After Graduation</h3>
                     <ul>
-                        <li><strong>Join existing startups</strong> - Learn from experienced teams</li>
-                        <li><strong>Start your own</strong> - With co-founders and clear vision</li>
-                        <li><strong>Corporate innovation</strong> - Intrapreneurship in large companies</li>
-                        <li><strong>Further education</strong> - Specialized degrees or certifications</li>
+                        <li>Join existing startups to learn</li>
+                        <li>Start your own with co-founders</li>
+                        <li>Innovate within large companies</li>
+                        <li>Specialize through focused education</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="highlight">
-                The best time to start is now - every expert was once a beginner
             </div>
         </div>
 
-        <!-- Slide 7: Internships: The Missing Bridge -->
-        <div class="slide">
+        <!-- Slide 8: Internships Problem -->
+        <div class="slide dark">
             <h2>Internships: The Missing Bridge</h2>
-            <div class="two-column">
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>The Challenge:</h3>
-                    <ul>
-                        <li><strong>Experience gap</strong> - Need experience to get experience</li>
-                        <li><strong>Limited opportunities</strong> - Few quality internships available</li>
-                        <li><strong>Mismatch</strong> - Students and companies struggle to connect</li>
-                        <li><strong>Geographic barriers</strong> - Best opportunities often in other cities/countries</li>
-                    </ul>
+                    <div class="single-word">Problem</div>
                 </div>
                 <div>
-                    <h3>The Solution:</h3>
                     <ul>
-                        <li><strong>AI-powered matching</strong> - Connect students with perfect-fit opportunities</li>
-                        <li><strong>Verified credentials</strong> - Prove your skills with trusted certifications</li>
-                        <li><strong>Global access</strong> - Work with companies worldwide</li>
-                        <li><strong>Structured support</strong> - Guidance throughout the process</li>
+                        <li>Experience gap: Need experience to get experience</li>
+                        <li>Limited opportunities in Kazakhstan</li>
+                        <li>Students and companies can't connect</li>
+                        <li>Geographic barriers block global opportunities</li>
+                        <li>No way to verify student skills</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="highlight">
-                Internships are the fastest path from student to professional
-            </div>
+            <div class="quote">Internships are the fastest path from student to professional</div>
         </div>
 
-        <!-- Slide 8: Meet Intern AI -->
+        <!-- Slide 9: Meet Intern AI -->
         <div class="slide">
-            <h2>Meet Intern AI</h2>
-            <p><strong>Mission:</strong> Connecting talented Kazakh students with global internship opportunities through AI-driven matching and verified skill assessment.</p>
-            
-            <p><strong>Founded:</strong> 2024 | <strong>Headquarters:</strong> United States | <strong>Focus:</strong> Kazakhstan</p>
-            
-            <h3>The Problem We Solve:</h3>
-            <ul>
-                <li>Students can't find quality internships</li>
-                <li>Companies struggle to identify skilled candidates</li>
-                <li>Geographic and cultural barriers limit opportunities</li>
-                <li>No standardized way to verify student capabilities</li>
-            </ul>
-            
-            <h3>Our Approach:</h3>
-            <ul>
-                <li><strong>AI-powered matching</strong> between students and companies</li>
-                <li><strong>Blockchain-verified certifications</strong> for skill validation</li>
-                <li><strong>Mandatory volunteering</strong> for character development</li>
-                <li><strong>End-to-end support</strong> throughout the internship journey</li>
-            </ul>
-        </div>
-
-        <!-- Slide 9: How Intern AI Works -->
-        <div class="slide">
-            <h2>How Intern AI Works (High-Level)</h2>
-            <div class="process-step">
-                <h4>1. Registration</h4>
-                <p>Create comprehensive student profile</p>
-            </div>
-            <div class="process-step">
-                <h4>2. Assessment</h4>
-                <p>Demonstrate skills through verified tests</p>
-            </div>
-            <div class="process-step">
-                <h4>3. Matching</h4>
-                <p>AI finds best-fit opportunities</p>
-            </div>
-            <div class="process-step">
-                <h4>4. Application</h4>
-                <p>Streamlined application process</p>
-            </div>
-            <div class="process-step">
-                <h4>5. Placement</h4>
-                <p>Successful internship placement</p>
-            </div>
-            <div class="process-step">
-                <h4>6. Support</h4>
-                <p>Continuous guidance and monitoring</p>
+            <div class="full-bleed">
+                <h1>Meet Intern AI</h1>
+                <div class="statement">Connecting talented Kazakh students with global opportunities through AI-driven matching</div>
+                <p style="font-size: 1.8rem; margin-top: 60px;">Founded 2024 • US Headquarters • Kazakhstan Focus</p>
             </div>
         </div>
 
-        <!-- Slide 10: Platform Modules -->
+        <!-- Slide 10: How Intern AI Works -->
+        <div class="slide dark">
+            <h2>How Intern AI Works</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h4>Register</h4>
+                    <p>Create comprehensive profile</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h4>Assess</h4>
+                    <p>Prove skills through tests</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h4>Match</h4>
+                    <p>AI finds perfect opportunities</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h4>Apply</h4>
+                    <p>Streamlined application process</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">5</div>
+                    <h4>Place</h4>
+                    <p>Get your dream internship</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">6</div>
+                    <h4>Support</h4>
+                    <p>Continuous guidance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Platform Modules -->
         <div class="slide">
             <h2>Platform Modules</h2>
-            <table>
-                <tr>
-                    <th>Module</th>
-                    <th>Purpose</th>
-                    <th>Key Features</th>
-                </tr>
-                <tr>
-                    <td><strong>Analytics</strong></td>
-                    <td>Performance tracking and insights</td>
-                    <td>Real-time dashboards, progress monitoring</td>
-                </tr>
-                <tr>
-                    <td><strong>Veritas</strong></td>
-                    <td>Skill verification and certification</td>
-                    <td>Blockchain-secured credentials, skill assessment</td>
-                </tr>
-                <tr>
-                    <td><strong>CredibilityGuard</strong></td>
-                    <td>Fraud prevention and trust</td>
-                    <td>Identity verification, background checks</td>
-                </tr>
-                <tr>
-                    <td><strong>Connect</strong></td>
-                    <td>Networking and communication</td>
-                    <td>Student-company matching, messaging system</td>
-                </tr>
-                <tr>
-                    <td><strong>AdminLens</strong></td>
-                    <td>Platform administration</td>
-                    <td>User management, content moderation</td>
-                </tr>
-            </table>
-            
-            <h3>Key Benefits:</h3>
-            <ul>
-                <li><strong>Integrated ecosystem</strong> - All tools work together seamlessly</li>
-                <li><strong>Data-driven decisions</strong> - Analytics guide improvements</li>
-                <li><strong>Trust and security</strong> - Verified credentials and identity</li>
-                <li><strong>Global reach</strong> - Connect with international opportunities</li>
-            </ul>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-title">Analytics</div>
+                    <div class="module-description">Real-time performance tracking and insights</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">Veritas</div>
+                    <div class="module-description">Blockchain-verified skill certification</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">CredibilityGuard</div>
+                    <div class="module-description">Fraud prevention and trust infrastructure</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">Connect</div>
+                    <div class="module-description">Intelligent matching and communication</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">AdminLens</div>
+                    <div class="module-description">Platform administration and oversight</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Slide 11: Intern AI Analytics -->
-        <div class="slide">
+        <!-- Slide 12: Analytics -->
+        <div class="slide dark">
             <h2>Intern AI Analytics</h2>
-            <h3>Real-Time Performance Tracking</h3>
-            
-            <div class="two-column">
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>For Students:</h3>
-                    <ul>
-                        <li><strong>Skill progression</strong> - Track improvement over time</li>
-                        <li><strong>Application success rates</strong> - Optimize your approach</li>
-                        <li><strong>Market insights</strong> - See trending skills and industries</li>
-                        <li><strong>Personalized recommendations</strong> - AI suggests next steps</li>
-                    </ul>
+                    <div class="single-word">Data</div>
                 </div>
                 <div>
-                    <h3>For Companies:</h3>
+                    <h3>For Students</h3>
                     <ul>
-                        <li><strong>Candidate quality metrics</strong> - Find the best talent</li>
-                        <li><strong>Hiring pipeline analytics</strong> - Optimize recruitment process</li>
-                        <li><strong>ROI measurement</strong> - Track internship program success</li>
-                        <li><strong>Predictive modeling</strong> - Identify high-potential candidates</li>
+                        <li>Track skill progression over time</li>
+                        <li>Optimize application success rates</li>
+                        <li>See trending skills and industries</li>
+                        <li>Get AI-powered recommendations</li>
+                    </ul>
+                    <h3>For Companies</h3>
+                    <ul>
+                        <li>Find the best talent faster</li>
+                        <li>Optimize hiring pipelines</li>
+                        <li>Measure internship ROI</li>
+                        <li>Predict high-potential candidates</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="highlight">
-                Data-driven decisions lead to better outcomes for everyone
             </div>
         </div>
 
-        <!-- Slide 12: Veritas -->
+        <!-- Slide 13: Veritas -->
         <div class="slide">
             <h2>Veritas</h2>
-            <h3>Blockchain-Verified Skill Certification</h3>
-            
-            <div class="two-column">
+            <div class="statement">Your skills are your currency</div>
+            <div class="asymmetric-grid reverse">
                 <div>
-                    <h3>How It Works:</h3>
-                    <ul>
-                        <li><strong>Comprehensive assessments</strong> - Test practical skills, not just theory</li>
-                        <li><strong>Blockchain security</strong> - Tamper-proof credential storage</li>
-                        <li><strong>Industry recognition</strong> - Certificates valued by employers</li>
-                        <li><strong>Continuous updates</strong> - Skills stay current with market needs</li>
-                    </ul>
+                    <div class="single-word">Trust</div>
                 </div>
                 <div>
-                    <h3>Available Certifications:</h3>
+                    <h3>Blockchain-Verified Certifications</h3>
                     <ul>
-                        <li><strong>Programming</strong> - Python, JavaScript, Java, C++</li>
-                        <li><strong>Data Science</strong> - Analytics, machine learning, visualization</li>
-                        <li><strong>Digital Marketing</strong> - SEO, social media, content strategy</li>
-                        <li><strong>Business Skills</strong> - Project management, communication, leadership</li>
+                        <li>Comprehensive skill assessments</li>
+                        <li>Tamper-proof credential storage</li>
+                        <li>Industry-recognized certificates</li>
+                        <li>Continuously updated content</li>
+                    </ul>
+                    <h3>Available Certifications</h3>
+                    <ul>
+                        <li>Programming: Python, JavaScript, Java</li>
+                        <li>Data Science: ML, analytics, visualization</li>
+                        <li>Digital Marketing: SEO, growth hacking</li>
+                        <li>Business: Project management, leadership</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="highlight">
-                Your skills are your currency - make them verifiable and valuable
             </div>
         </div>
 
-        <!-- Slide 13: CredibilityGuard -->
-        <div class="slide">
+        <!-- Slide 14: CredibilityGuard -->
+        <div class="slide dark">
             <h2>CredibilityGuard</h2>
-            <h3>Trust and Security Infrastructure</h3>
-            
-            <div class="two-column">
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>Identity Verification:</h3>
+                    <h3>Identity Verification</h3>
                     <ul>
-                        <li><strong>Document validation</strong> - Passport, student ID, transcripts</li>
-                        <li><strong>Biometric confirmation</strong> - Facial recognition, fingerprints</li>
-                        <li><strong>Educational background</strong> - School and grade verification</li>
-                        <li><strong>Reference checks</strong> - Teachers, mentors, previous employers</li>
+                        <li>Document validation system</li>
+                        <li>Biometric confirmation</li>
+                        <li>Educational background checks</li>
+                        <li>Reference verification</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Fraud Prevention:</h3>
+                    <h3>Fraud Prevention</h3>
                     <ul>
-                        <li><strong>AI-powered detection</strong> - Identify suspicious patterns</li>
-                        <li><strong>Blockchain immutability</strong> - Prevent credential tampering</li>
-                        <li><strong>Continuous monitoring</strong> - Ongoing security assessment</li>
-                        <li><strong>Incident response</strong> - Quick resolution of security issues</li>
+                        <li>AI-powered threat detection</li>
+                        <li>Blockchain immutability</li>
+                        <li>Continuous monitoring</li>
+                        <li>Rapid incident response</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="highlight">
-                Trust is the foundation of all successful partnerships
-            </div>
+            <div class="quote">Trust is the foundation of every successful partnership</div>
         </div>
 
-        <!-- Slide 14: Connect -->
+        <!-- Slide 15: Connect -->
         <div class="slide">
             <h2>Connect</h2>
-            <h3>Intelligent Matching and Communication</h3>
-            
-            <div class="two-column">
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>AI-Powered Matching:</h3>
-                    <ul>
-                        <li><strong>Skills alignment</strong> - Match student abilities with company needs</li>
-                        <li><strong>Cultural fit</strong> - Consider personality and values</li>
-                        <li><strong>Career goals</strong> - Align with student aspirations</li>
-                        <li><strong>Geographic preferences</strong> - Remote, local, or international</li>
-                    </ul>
+                    <div class="single-word">Match</div>
                 </div>
                 <div>
-                    <h3>Communication Tools:</h3>
+                    <h3>AI-Powered Matching</h3>
                     <ul>
-                        <li><strong>Secure messaging</strong> - Direct communication with employers</li>
-                        <li><strong>Video interviewing</strong> - Built-in interview platform</li>
-                        <li><strong>Document sharing</strong> - Portfolios, resumes, certifications</li>
-                        <li><strong>Progress tracking</strong> - Monitor application status</li>
+                        <li>Skills alignment optimization</li>
+                        <li>Cultural fit assessment</li>
+                        <li>Career goal alignment</li>
+                        <li>Geographic preference matching</li>
+                    </ul>
+                    <h3>Communication Tools</h3>
+                    <ul>
+                        <li>Secure messaging platform</li>
+                        <li>Built-in video interviewing</li>
+                        <li>Portfolio sharing system</li>
+                        <li>Application progress tracking</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="highlight">
-                The right connection can change your entire career trajectory
             </div>
         </div>
 
-        <!-- Slide 15: AdminLens -->
-        <div class="slide">
+        <!-- Slide 16: AdminLens -->
+        <div class="slide dark">
             <h2>AdminLens</h2>
-            <h3>Platform Administration and Oversight</h3>
-            
-            <div class="two-column">
+            <div class="asymmetric-grid reverse">
                 <div>
-                    <h3>User Management:</h3>
-                    <ul>
-                        <li><strong>Role-based access</strong> - Students, companies, administrators</li>
-                        <li><strong>Permission controls</strong> - Granular security settings</li>
-                        <li><strong>Activity monitoring</strong> - Track user engagement</li>
-                        <li><strong>Support systems</strong> - Help desk and troubleshooting</li>
-                    </ul>
+                    <div class="single-word">Control</div>
                 </div>
                 <div>
-                    <h3>Content Management:</h3>
+                    <h3>User Management</h3>
                     <ul>
-                        <li><strong>Quality assurance</strong> - Review and approve content</li>
-                        <li><strong>Compliance monitoring</strong> - Ensure regulatory adherence</li>
-                        <li><strong>Performance optimization</strong> - System health and speed</li>
-                        <li><strong>Data backup</strong> - Secure information storage</li>
+                        <li>Role-based access control</li>
+                        <li>Granular permissions</li>
+                        <li>Activity monitoring</li>
+                        <li>Support ticket system</li>
+                    </ul>
+                    <h3>Content Management</h3>
+                    <ul>
+                        <li>Quality assurance workflows</li>
+                        <li>Compliance monitoring</li>
+                        <li>Performance optimization</li>
+                        <li>Secure data backup</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="highlight">
-                Behind every great platform is robust administration
             </div>
         </div>
 
-        <!-- Slide 16: Mandatory Volunteering -->
+        <!-- Slide 17: Mandatory Volunteering -->
         <div class="slide">
             <h2>Mandatory Volunteering</h2>
-            <h3>Character Development Through Service</h3>
-            
-            <div class="two-column">
+            <div class="statement">Character development through service</div>
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>Why Volunteering Matters:</h3>
+                    <h3>Why It Matters</h3>
                     <ul>
-                        <li><strong>Social responsibility</strong> - Contributing to community welfare</li>
-                        <li><strong>Skill development</strong> - Leadership, teamwork, problem-solving</li>
-                        <li><strong>Network building</strong> - Connect with diverse groups</li>
-                        <li><strong>Personal growth</strong> - Develop empathy and perspective</li>
+                        <li>Build social responsibility</li>
+                        <li>Develop leadership skills</li>
+                        <li>Expand your network</li>
+                        <li>Gain valuable perspective</li>
                     </ul>
-                    
-                    <h3>Volunteer Opportunities:</h3>
+                    <h3>Opportunities</h3>
                     <ul>
-                        <li><strong>Education</strong> - Tutoring younger students</li>
-                        <li><strong>Environment</strong> - Clean-up and conservation projects</li>
-                        <li><strong>Technology</strong> - Teaching digital skills to seniors</li>
-                        <li><strong>Community</strong> - Local event organization and support</li>
+                        <li>Education: Tutor younger students</li>
+                        <li>Environment: Conservation projects</li>
+                        <li>Technology: Teach digital skills</li>
+                        <li>Community: Event organization</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Integration with Internships:</h3>
+                    <h3>Integration</h3>
                     <ul>
-                        <li><strong>Requirement</strong> - 20 hours minimum before internship eligibility</li>
-                        <li><strong>Verification</strong> - Tracked and certified through platform</li>
-                        <li><strong>Recognition</strong> - Highlighted in student profiles</li>
-                        <li><strong>Ongoing commitment</strong> - Encouraged throughout career</li>
+                        <li>20 hours minimum requirement</li>
+                        <li>Platform-tracked verification</li>
+                        <li>Profile recognition system</li>
+                        <li>Ongoing commitment encouraged</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 17: Student Journey Storyboard -->
-        <div class="slide">
-            <h2>Student Journey Storyboard</h2>
-            
-            <div class="timeline-item">
-                <strong>Month 1:</strong> Registration, assessment, and certification
+        <!-- Slide 18: Student Journey -->
+        <div class="slide dark">
+            <h2>Student Journey</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h4>Month 1</h4>
+                    <p>Registration, assessment, certification</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h4>Month 2</h4>
+                    <p>Volunteer work and AI matching</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h4>Month 3</h4>
+                    <p>Applications and interviews</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4-6</div>
+                    <h4>Months 4-6</h4>
+                    <p>Internship experience with support</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">∞</div>
+                    <h4>Ongoing</h4>
+                    <p>Career support and alumni network</p>
+                </div>
             </div>
-            <div class="timeline-item">
-                <strong>Month 2:</strong> Volunteer work and AI matching
-            </div>
-            <div class="timeline-item">
-                <strong>Month 3:</strong> Applications and interviews
-            </div>
-            <div class="timeline-item">
-                <strong>Months 4-6:</strong> Internship experience
-            </div>
-            <div class="timeline-item">
-                <strong>Ongoing:</strong> Career support and alumni network
-            </div>
-            
-            <h3>Detailed Timeline:</h3>
-            <ul>
-                <li><strong>Week 1:</strong> Sign up and complete profile</li>
-                <li><strong>Weeks 2-3:</strong> Take skill assessments and earn certifications</li>
-                <li><strong>Weeks 4-7:</strong> Complete 20 hours of community service</li>
-                <li><strong>Week 8:</strong> AI matching and company selection</li>
-                <li><strong>Weeks 9-11:</strong> Apply to positions and interview</li>
-                <li><strong>Weeks 12-24:</strong> Complete internship with ongoing support</li>
-            </ul>
         </div>
 
-        <!-- Slide 18: Launch Status -->
+        <!-- Slide 19: Launch Status -->
         <div class="slide">
             <h2>Launch Status</h2>
-            <h3>Current Phase: Beta Testing (Q1 2025)</h3>
-            
-            <div class="two-column">
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>Beta Features Available:</h3>
+                    <h3>Beta Phase - Q1 2025</h3>
                     <ul>
-                        <li><strong>Student registration</strong> - Profile creation and management</li>
-                        <li><strong>Skill assessments</strong> - Initial certification tests</li>
-                        <li><strong>Volunteer tracking</strong> - Community service verification</li>
-                        <li><strong>Company partnerships</strong> - Growing network of employers</li>
+                        <li>Student registration system</li>
+                        <li>Initial skill assessments</li>
+                        <li>Volunteer activity tracking</li>
+                        <li>Company partnership network</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Coming Soon:</h3>
+                    <h3>Coming Soon</h3>
                     <ul>
-                        <li><strong>Full AI matching</strong> - Complete algorithm deployment</li>
-                        <li><strong>Mobile app</strong> - iOS and Android applications</li>
-                        <li><strong>Global expansion</strong> - Additional countries and languages</li>
-                        <li><strong>Advanced analytics</strong> - Detailed performance insights</li>
+                        <li>Full AI matching deployment</li>
+                        <li>Mobile app launch</li>
+                        <li>Global platform expansion</li>
+                        <li>Advanced analytics dashboard</li>
                     </ul>
                 </div>
             </div>
-            
-            <p><strong>Target Launch:</strong> Q3 2025</p>
-            
-            <div class="highlight">
-                Be among the first to experience the future of career development
-            </div>
+            <div class="quote">Be among the first to experience the future of career development</div>
+            <div class="statement">Target Launch: Q3 2025</div>
         </div>
 
-        <!-- Slide 19: What You Gain -->
-        <div class="slide">
+        <!-- Slide 20: What You Gain -->
+        <div class="slide dark">
             <h2>What You Gain</h2>
-            
-            <div class="two-column">
+            <div class="asymmetric-grid">
                 <div>
-                    <h3>Immediate Benefits:</h3>
+                    <h3>Immediate Benefits</h3>
                     <ul>
-                        <li><strong>Verified credentials</strong> - Blockchain-certified skills</li>
-                        <li><strong>Global opportunities</strong> - Access to international internships</li>
-                        <li><strong>Professional network</strong> - Connect with industry leaders</li>
-                        <li><strong>Career guidance</strong> - Personalized development plans</li>
+                        <li>Blockchain-verified credentials</li>
+                        <li>Global internship access</li>
+                        <li>Professional network expansion</li>
+                        <li>Personalized career guidance</li>
                     </ul>
-                    
-                    <h3>Long-term Value:</h3>
+                    <h3>Long-term Value</h3>
                     <ul>
-                        <li><strong>Competitive advantage</strong> - Stand out in job market</li>
-                        <li><strong>Higher earning potential</strong> - Skilled professionals earn more</li>
-                        <li><strong>Global mobility</strong> - Work anywhere in the world</li>
-                        <li><strong>Innovation mindset</strong> - Think like an entrepreneur</li>
+                        <li>Competitive job market advantage</li>
+                        <li>Higher earning potential</li>
+                        <li>Global career mobility</li>
+                        <li>Entrepreneurial mindset</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>For Kazakhstan:</h3>
+                    <h3>For Kazakhstan</h3>
                     <ul>
-                        <li><strong>Economic growth</strong> - Skilled workforce attracts investment</li>
-                        <li><strong>International reputation</strong> - Recognition as tech hub</li>
-                        <li><strong>Youth empowerment</strong> - Leading the digital transformation</li>
-                        <li><strong>Cultural bridge</strong> - Connecting East and West</li>
+                        <li>Economic growth acceleration</li>
+                        <li>International tech hub status</li>
+                        <li>Youth-led digital transformation</li>
+                        <li>East-West cultural bridge</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="highlight">
-                Investing in your future starts with a single step
             </div>
         </div>
 
-        <!-- Slide 20: Call to Action -->
+        <!-- Slide 21: Call to Action -->
         <div class="slide">
-            <h1>Ready to Level Up?</h1>
-            
-            <div class="contact-info">
-                <h3>Join the Intern AI Revolution</h3>
-                
-                <div class="center">
-                    <p><strong>Contact Information:</strong></p>
-                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                    <p><strong>Email:</strong> info@intern-ai.com</p>
-                    <p><strong>Website:</strong> www.intern-ai.com</p>
-                    
+            <div class="full-bleed">
+                <h1>Ready to Level Up?</h1>
+                <div class="contact-section">
+                    <h3>Join the Intern AI Revolution</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            Phone: <span class="contact-value">+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            Email: <span class="contact-value">info@intern-ai.com</span>
+                        </div>
+                        <div class="contact-item">
+                            Website: <span class="contact-value">www.intern-ai.com</span>
+                        </div>
+                    </div>
                     <div class="qr-placeholder">
                         QR CODE
                     </div>
-                    
-                    <p><strong>Follow Us:</strong></p>
-                    <p><strong>LinkedIn:</strong> /company/intern-ai</p>
-                    <p><strong>Twitter:</strong> @InternAI_Global</p>
-                    <p><strong>Instagram:</strong> @intern.ai.official</p>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            LinkedIn: <span class="contact-value">/company/intern-ai</span>
+                        </div>
+                        <div class="contact-item">
+                            Twitter: <span class="contact-value">@InternAI_Global</span>
+                        </div>
+                        <div class="contact-item">
+                            Instagram: <span class="contact-value">@intern.ai.official</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="highlight large">
-                Your future starts now - Don't wait for opportunities, create them
+                <div class="statement">Your future starts now—Don't wait for opportunities, create them</div>
             </div>
         </div>
     </div>
 
     <div class="slide-counter">
-        <span id="current-slide">1</span> / <span id="total-slides">20</span>
+        <span id="current-slide">1</span> / <span id="total-slides">21</span>
     </div>
 
     <div class="navigation">
-        <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">Previous</button>
+        <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">Prev</button>
         <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Next</button>
     </div>
 
     <div class="footer-text">
-        Intern AI © 2025 · Building brighter careers with AI + community
+        Intern AI © 2025 | Building brighter careers with AI + community
     </div>
 
     <script>
